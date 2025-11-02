@@ -1,0 +1,671 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Flexbox Tutorial — Two-Column Layout</title>
+  <link rel="stylesheet" href="tutorial-styles.css" />
+</head>
+<body>
+  <div class="tutorial-header">
+    <h1>🎓 Interactive Flexbox Tutorial</h1>
+    <p>Two-Column Flexbox with Sticky Sidebar + Anchor Nav</p>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+      <span class="progress-text" id="progressText">0% Complete</span>
+    </div>
+  </div>
+
+  <div class="tutorial-container">
+    <!-- Left sidebar: Tutorial steps -->
+    <aside class="tutorial-steps" role="navigation" aria-label="Tutorial steps">
+      <div class="tutorial-nav">
+        <h2>Tutorial Steps</h2>
+        <ul class="step-list">
+          <li><a href="#part-a" data-step="a">Part A: Scaffold HTML</a><span class="step-status" data-step="a"></span></li>
+          <li><a href="#part-b" data-step="b">Part B: Flexbox Layout</a><span class="step-status" data-step="b"></span></li>
+          <li><a href="#part-c" data-step="c">Part C: Sticky Sidebar</a><span class="step-status" data-step="c"></span></li>
+          <li><a href="#part-d" data-step="d">Part D: Anchor Links</a><span class="step-status" data-step="d"></span></li>
+          <li><a href="#part-e" data-step="e">Part E: Decorative Elements</a><span class="step-status" data-step="e"></span></li>
+          <li><a href="#part-f" data-step="f">Part F: Finishing Touches</a><span class="step-status" data-step="f"></span></li>
+        </ul>
+
+        <div class="reflection-summary">
+          <h3>Your Reflections</h3>
+          <button class="btn-secondary" id="copyReflections">📋 Copy All</button>
+          <button class="btn-secondary" id="clearProgress">🔄 Reset Progress</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main workspace: Scrollable tutorial content -->
+    <main class="workspace" role="main">
+      <div class="tutorial-intro">
+        <h2>Welcome to Your Interactive Tutorial!</h2>
+        <p><strong>Goal:</strong> Build a two-column page with Flexbox: a 300px sticky sidebar on the left and a scrollable content column on the right. Nav links jump to section IDs.</p>
+        <p><strong>What you'll learn:</strong></p>
+        <ul>
+          <li>Setting up a parent flex container (horizontal layout)</li>
+          <li>Making a fixed-width sidebar + flexible content column</li>
+          <li>Using anchor links to jump within the page</li>
+          <li>Making the sidebar sticky with CSS</li>
+          <li>Positioning decorative elements without blocking content</li>
+        </ul>
+        <div class="tip-box">
+          <strong>💡 How this works:</strong>
+          <ul>
+            <li>Click through each section below</li>
+            <li>Use the live code editor on the right to experiment</li>
+            <li>Complete checkpoints to validate your progress</li>
+            <li>Toggle solutions when you need hints</li>
+            <li>Write reflections to cement your learning</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- PART A: Scaffold HTML -->
+      <section class="tutorial-section" id="part-a">
+        <div class="section-header" data-section="a">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part A — Scaffold the HTML
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>A1) Start file + semantic structure</h3>
+            <p>Create <code>index.html</code> with the following skeleton. <strong>Do not change class names;</strong> add your content where noted.</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-a1">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-a1">
+              <h4>HTML Structure Solution:</h4>
+              <pre><code>&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
+  &lt;title&gt;Two-Column Flexbox — Sticky Nav&lt;/title&gt;
+  &lt;link rel="stylesheet" href="styles.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;My Flexbox Layout&lt;/h1&gt;
+    &lt;p&gt;A sticky sidebar navigation example&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;main class="layout"&gt;
+    &lt;nav class="sidebar" aria-label="Section navigation"&gt;
+      &lt;ol class="nav-list"&gt;
+        &lt;li&gt;&lt;a href="#section-1"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section-2"&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section-3"&gt;Main Content&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section-4"&gt;Advanced Topics&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#section-5"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
+      &lt;/ol&gt;
+    &lt;/nav&gt;
+
+    &lt;div class="content"&gt;
+      &lt;section id="section-1" class="panel"&gt;
+        &lt;h2&gt;Introduction&lt;/h2&gt;
+        &lt;p&gt;Welcome to our content section.&lt;/p&gt;
+        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section id="section-2" class="panel"&gt;
+        &lt;h2&gt;Getting Started&lt;/h2&gt;
+        &lt;p&gt;Let's begin our journey.&lt;/p&gt;
+        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section id="section-3" class="panel"&gt;
+        &lt;h2&gt;Main Content&lt;/h2&gt;
+        &lt;p&gt;Here's the main content.&lt;/p&gt;
+        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section id="section-4" class="panel"&gt;
+        &lt;h2&gt;Advanced Topics&lt;/h2&gt;
+        &lt;p&gt;Diving deeper into advanced concepts.&lt;/p&gt;
+        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section id="section-5" class="panel"&gt;
+        &lt;h2&gt;Conclusion&lt;/h2&gt;
+        &lt;p&gt;Wrapping up our discussion.&lt;/p&gt;
+        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+
+  &lt;footer&gt;
+    &lt;small&gt;© 2025 Flexbox Tutorial&lt;/small&gt;
+  &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+
+            <div class="resource-links">
+              <strong>📚 Resources:</strong>
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#linking_to_an_element_on_the_same_page" target="_blank">MDN: Anchor links to IDs</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section" target="_blank">MDN: &lt;section&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="a">
+            <h4>✅ Checkpoint A</h4>
+            <ul class="checklist">
+              <li>Do you have five nav items with <code>href="#section-x"</code>?</li>
+              <li>Do your sections have matching ids?</li>
+              <li>Did you include a <code>&lt;div class="deco"&gt;</code> inside each section?</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="a">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>What advantages do you see in giving each section a unique id? Where could id vs. class trip you up?</p>
+            <textarea
+              class="reflection-input"
+              data-step="a"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="a">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART B: Flexbox Layout -->
+      <section class="tutorial-section" id="part-b">
+        <div class="section-header" data-section="b">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part B — Flexbox Two-Column Layout
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>B1) Layout container</h3>
+            <p>Create <code>styles.css</code> and add the Flexbox parent:</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-b1">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-b1">
+              <h4>CSS Solution:</h4>
+              <pre><code>* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.layout {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1rem;
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <h3>B2) Sidebar vs. content sizing</h3>
+            <p>Give the left column a fixed 300px width; let the right column flex.</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-b2">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-b2">
+              <h4>CSS Solution:</h4>
+              <pre><code>.sidebar {
+  width: 300px;
+  flex: 0 0 300px;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.content {
+  flex: 1 1 auto;
+  max-width: 800px;
+}</code></pre>
+            </div>
+
+            <div class="tip-box">
+              <strong>💡 Hint:</strong> For a fixed column, use <code>flex: 0 0 300px;</code> or <code>width: 300px;</code>. For the flexible column, <code>flex: 1 1 auto;</code> works well.
+            </div>
+
+            <div class="resource-links">
+              <strong>📚 Resources:</strong>
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox" target="_blank">MDN: Flexbox basics</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex" target="_blank">MDN: flex shorthand</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="b">
+            <h4>✅ Checkpoint B</h4>
+            <ul class="checklist">
+              <li>Does the layout show two columns?</li>
+              <li>Is the sidebar exactly 300px?</li>
+              <li>Does the content area expand when you widen the window?</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="b">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>What's the difference between width and flex-basis in your mental model? When might you prefer one over the other?</p>
+            <textarea
+              class="reflection-input"
+              data-step="b"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="b">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART C: Sticky Sidebar -->
+      <section class="tutorial-section" id="part-c">
+        <div class="section-header" data-section="c">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part C — Sticky Sidebar (No JavaScript)
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>C1) Make the sidebar sticky</h3>
+            <p>Update <code>.sidebar</code> to stay pinned while scrolling:</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-c1">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-c1">
+              <h4>CSS Solution:</h4>
+              <pre><code>.sidebar {
+  width: 300px;
+  flex: 0 0 300px;
+  padding: 1rem;
+  background: #f5f5f5;
+  border-radius: 8px;
+
+  /* Sticky positioning */
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+}</code></pre>
+            </div>
+
+            <div class="warning-box">
+              <strong>⚠️ Common gotcha:</strong> Sticky works when the element's ancestor allows it (no <code>overflow: hidden</code> on parents). Keep <code>.layout</code> simple!
+            </div>
+
+            <div class="resource-links">
+              <strong>📚 Resources:</strong>
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky" target="_blank">MDN: position: sticky</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="c">
+            <h4>✅ Checkpoint C</h4>
+            <ul class="checklist">
+              <li>When you scroll, does the sidebar stay pinned?</li>
+              <li>If you add a tall header later, do you need to adjust <code>top</code>?</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="c">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>In your words, why is <code>position: sticky</code> different from <code>position: fixed</code> here?</p>
+            <textarea
+              class="reflection-input"
+              data-step="c"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="c">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART D: Anchor Links -->
+      <section class="tutorial-section" id="part-d">
+        <div class="section-header" data-section="d">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part D — Anchor Links + Scroll Polish
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>D1) Anchor links</h3>
+            <p>You already set <code>href="#section-x"</code> in the HTML. Ensure your sections have matching ids.</p>
+          </div>
+
+          <div class="step-card">
+            <h3>D2) Smooth scroll + heading alignment</h3>
+            <p>Add smooth scrolling and scroll margin to prevent headings from being glued to the top:</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-d2">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-d2">
+              <h4>CSS Solution:</h4>
+              <pre><code>html {
+  scroll-behavior: smooth;
+}
+
+.panel {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+
+  /* Room when scrolled-to by anchors */
+  scroll-margin-top: 1rem;
+  position: relative; /* needed for decor in Part E */
+}</code></pre>
+            </div>
+
+            <div class="resource-links">
+              <strong>📚 Resources:</strong>
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior" target="_blank">MDN: scroll-behavior</a></li>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin" target="_blank">MDN: scroll-margin</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="d">
+            <h4>✅ Checkpoint D</h4>
+            <ul class="checklist">
+              <li>Clicking each nav item jumps to the right section smoothly</li>
+              <li>The heading is comfortably visible after the jump</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="d">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>What problems might appear if you later add a fixed header? How would <code>scroll-margin-top</code> help?</p>
+            <textarea
+              class="reflection-input"
+              data-step="d"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="d">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART E: Decorative Elements -->
+      <section class="tutorial-section" id="part-e">
+        <div class="section-header" data-section="e">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part E — Decorative Elements (Per Section)
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>E1) Add a simple, non-blocking visual</h3>
+            <p>Style the <code>.deco</code> element so it doesn't block text or clicks:</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-e1">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-e1">
+              <h4>CSS Solution:</h4>
+              <pre><code>.deco {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 240px;
+  height: 240px;
+
+  pointer-events: none;   /* important! */
+  opacity: 0.25;
+
+  /* Soft gradient circle */
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    #7dd3fc,
+    transparent 60%
+  );
+  filter: blur(16px);
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <h3>E2) Variation per section</h3>
+            <p>Nudge the position/size per panel using <code>:nth-of-type()</code>:</p>
+
+            <button class="btn-toggle-solution" data-solution="solution-e2">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-e2">
+              <h4>CSS Solution:</h4>
+              <pre><code>.panel:nth-of-type(2) .deco {
+  top: 50%;
+  right: -5%;
+  left: auto;
+  background: radial-gradient(
+    circle at 70% 70%,
+    #fbbf24,
+    transparent 60%
+  );
+}
+
+.panel:nth-of-type(3) .deco {
+  bottom: -10%;
+  top: auto;
+  background: radial-gradient(
+    circle at 50% 50%,
+    #a78bfa,
+    transparent 60%
+  );
+}
+
+/* Continue for remaining sections... */</code></pre>
+            </div>
+
+            <div class="resource-links">
+              <strong>📚 Resources:</strong>
+              <ul>
+                <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank">MDN: Positioning</a></li>
+                <li><a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html" target="_blank">W3C: Contrast basics</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="e">
+            <h4>✅ Checkpoint E</h4>
+            <ul class="checklist">
+              <li>Each section shows a distinct decorative element</li>
+              <li>Text remains readable (good contrast!)</li>
+              <li>Links are clickable (thanks to <code>pointer-events: none</code>)</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="e">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>How did you ensure decoration didn't harm readability or usability? What would you change for dark vs. light themes?</p>
+            <textarea
+              class="reflection-input"
+              data-step="e"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="e">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- PART F: Finishing Touches -->
+      <section class="tutorial-section" id="part-f">
+        <div class="section-header" data-section="f">
+          <h2>
+            <span class="section-toggle">▶</span>
+            Part F — Finishing Touches (Optional)
+          </h2>
+        </div>
+
+        <div class="section-content">
+          <div class="step-card">
+            <h3>Optional Enhancements</h3>
+            <ul>
+              <li>Add a focus style for sidebar links (<code>:focus-visible</code>)</li>
+              <li>Style the active link based on scroll (stretch goal with IntersectionObserver)</li>
+              <li>Add a "Back to top" link at the end of each section</li>
+            </ul>
+
+            <button class="btn-toggle-solution" data-solution="solution-f1">💡 Show Solution</button>
+
+            <div class="solution-box hidden" id="solution-f1">
+              <h4>CSS Solution:</h4>
+              <pre><code>/* Focus styles for accessibility */
+.nav-list a:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Back to top link */
+.back-to-top {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
+  background: #f3f4f6;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+}
+
+.back-to-top:hover {
+  background: #e5e7eb;
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="checkpoint" data-checkpoint="f">
+            <h4>✅ Checkpoint F</h4>
+            <ul class="checklist">
+              <li>Focus styles are visible and clear</li>
+              <li>Navigation has good accessibility</li>
+            </ul>
+            <button class="btn-primary validate-checkpoint" data-step="f">Check My Progress</button>
+            <div class="checkpoint-feedback hidden"></div>
+          </div>
+
+          <div class="reflection-card">
+            <h4>🤔 Reflect (2–3 sentences):</h4>
+            <p>What one improvement most increases usability? Why?</p>
+            <textarea
+              class="reflection-input"
+              data-step="f"
+              placeholder="Write your reflection here..."
+              rows="4"></textarea>
+            <button class="btn-secondary save-reflection" data-step="f">💾 Save Reflection</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Code Workspace -->
+      <section class="tutorial-section workspace-section" id="workspace">
+        <h2>💻 Live Code Workspace</h2>
+        <p>Use this space to experiment with your code. Changes auto-update in the preview below.</p>
+
+        <div class="code-workspace">
+          <div class="editor-tabs">
+            <button class="tab-btn active" data-editor="html">HTML</button>
+            <button class="tab-btn" data-editor="css">CSS</button>
+          </div>
+
+          <div class="editor-container">
+            <textarea
+              id="htmlEditor"
+              class="code-editor active"
+              placeholder="Paste your HTML here..."
+              spellcheck="false"></textarea>
+
+            <textarea
+              id="cssEditor"
+              class="code-editor"
+              placeholder="Paste your CSS here..."
+              spellcheck="false"></textarea>
+          </div>
+
+          <div class="editor-actions">
+            <button class="btn-primary" id="updatePreview">🔄 Update Preview</button>
+            <button class="btn-secondary" id="downloadCode">⬇️ Download Files</button>
+            <label class="auto-preview-toggle">
+              <input type="checkbox" id="autoPreview" />
+              Auto-update preview
+            </label>
+          </div>
+        </div>
+
+        <div class="preview-container">
+          <h3>Preview</h3>
+          <iframe
+            id="preview"
+            title="Live preview"
+            sandbox="allow-same-origin allow-scripts"
+            loading="lazy"></iframe>
+        </div>
+      </section>
+
+      <!-- Submission Guide -->
+      <section class="tutorial-section" id="submission">
+        <h2>📤 Submission (Canvas)</h2>
+
+        <div class="step-card">
+          <h3>What to turn in</h3>
+          <ol>
+            <li>Link to your live page (CodePen, GitHub Pages, or Netlify)</li>
+            <li>A short reflection (6–10 sentences total) from Parts A–F</li>
+            <li>Your final HTML and CSS files</li>
+          </ol>
+
+          <h3>Checklist</h3>
+          <ul class="checklist">
+            <li>☐ Sidebar is 300px and sticky</li>
+            <li>☐ Five nav items link to matching ids</li>
+            <li>☐ Right column flexes to fill space (Flexbox only—no grid)</li>
+            <li>☐ Smooth scrolling works; headings aren't jammed at the top</li>
+            <li>☐ Each section includes a decorative element that doesn't block content</li>
+            <li>☐ Basic accessibility: reasonable contrast, visible focus on nav links</li>
+          </ul>
+
+          <h3>Quick rubric (10 pts)</h3>
+          <ul>
+            <li><strong>4 pts</strong> — Layout correctness (Flexbox, 300px sidebar, sticky behavior)</li>
+            <li><strong>3 pts</strong> — Anchors & scroll polish (IDs matched, smooth scroll, margin)</li>
+            <li><strong>2 pts</strong> — Decorative elements (positioned safely, varied)</li>
+            <li><strong>1 pt</strong> — Reflection quality (clear, specific, shows understanding)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="tutorial.js"></script>
+</body>
+</html>
