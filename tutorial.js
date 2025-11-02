@@ -1,12 +1,10 @@
-// ===== Tutorial Interactive Features =====
-// State management, progress tracking, validations, and UI interactions
+// ===== Streamlined Tutorial Interactive Features =====
+// Simple state management, progress tracking, and reflections
 
 // Initialize state
 const TutorialState = {
   completedSteps: new Set(),
   reflections: {},
-  currentStep: null,
-  autoPreview: false,
 };
 
 // ===== LocalStorage Management =====
@@ -14,8 +12,6 @@ const Storage = {
   KEYS: {
     COMPLETED: 'flexbox-tutorial-completed',
     REFLECTIONS: 'flexbox-tutorial-reflections',
-    HTML_CODE: 'flexbox-tutorial-html',
-    CSS_CODE: 'flexbox-tutorial-css',
   },
 
   load() {
@@ -28,16 +24,6 @@ const Storage = {
       const reflections = localStorage.getItem(this.KEYS.REFLECTIONS);
       if (reflections) {
         TutorialState.reflections = JSON.parse(reflections);
-      }
-
-      const htmlCode = localStorage.getItem(this.KEYS.HTML_CODE);
-      if (htmlCode) {
-        document.getElementById('htmlEditor').value = htmlCode;
-      }
-
-      const cssCode = localStorage.getItem(this.KEYS.CSS_CODE);
-      if (cssCode) {
-        document.getElementById('cssEditor').value = cssCode;
       }
     } catch (error) {
       console.error('Error loading from localStorage:', error);
@@ -56,17 +42,6 @@ const Storage = {
       );
     } catch (error) {
       console.error('Error saving to localStorage:', error);
-    }
-  },
-
-  saveCode() {
-    try {
-      const htmlCode = document.getElementById('htmlEditor').value;
-      const cssCode = document.getElementById('cssEditor').value;
-      localStorage.setItem(this.KEYS.HTML_CODE, htmlCode);
-      localStorage.setItem(this.KEYS.CSS_CODE, cssCode);
-    } catch (error) {
-      console.error('Error saving code:', error);
     }
   },
 
@@ -100,60 +75,37 @@ const Progress = {
     if (progressText) {
       progressText.textContent = `${percentage}% Complete (${completed}/${this.TOTAL_STEPS})`;
     }
-
-    // Update step status indicators
-    TutorialState.completedSteps.forEach(step => {
-      const statusEl = document.querySelector(`.step-status[data-step="${step}"]`);
-      if (statusEl) {
-        statusEl.classList.add('completed');
-        statusEl.classList.remove('in-progress');
-      }
-    });
   },
 
-  markComplete(step) {
-    TutorialState.completedSteps.add(step);
+  toggle(step) {
+    if (TutorialState.completedSteps.has(step)) {
+      TutorialState.completedSteps.delete(step);
+    } else {
+      TutorialState.completedSteps.add(step);
+    }
     Storage.save();
     this.update();
   },
-
-  markInProgress(step) {
-    const statusEl = document.querySelector(`.step-status[data-step="${step}"]`);
-    if (statusEl && !TutorialState.completedSteps.has(step)) {
-      statusEl.classList.add('in-progress');
-    }
-  },
 };
 
-// ===== Accordion Sections =====
-const Accordion = {
+// ===== Section Checkboxes =====
+const SectionCheckboxes = {
   init() {
-    const headers = document.querySelectorAll('.section-header[data-section]');
+    const checkboxes = document.querySelectorAll('.section-checkbox');
 
-    headers.forEach(header => {
-      header.addEventListener('click', () => {
-        const isExpanded = header.classList.contains('expanded');
+    checkboxes.forEach(checkbox => {
+      const step = checkbox.dataset.step;
 
-        if (isExpanded) {
-          header.classList.remove('expanded');
-        } else {
-          // Collapse all other sections
-          headers.forEach(h => h.classList.remove('expanded'));
-          // Expand clicked section
-          header.classList.add('expanded');
+      // Load saved state
+      if (TutorialState.completedSteps.has(step)) {
+        checkbox.checked = true;
+      }
 
-          // Mark as in progress
-          const step = header.dataset.section;
-          Progress.markInProgress(step);
-        }
+      // Handle changes
+      checkbox.addEventListener('change', () => {
+        Progress.toggle(step);
       });
     });
-
-    // Auto-expand first section
-    const firstHeader = document.querySelector('.section-header[data-section="a"]');
-    if (firstHeader) {
-      firstHeader.classList.add('expanded');
-    }
   },
 };
 
@@ -183,118 +135,10 @@ const Solutions = {
   },
 };
 
-// ===== Checkpoint Validation =====
-const Checkpoints = {
-  validators: {
-    a: {
-      name: 'Part A: HTML Scaffold',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Great start! Make sure you have 5 nav items with matching section IDs, and a .deco element in each section.',
-        };
-      },
-    },
-    b: {
-      name: 'Part B: Flexbox Layout',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Nice work on the layout! Remember: sidebar should be 300px with flex: 0 0 300px, and content should use flex: 1 1 auto.',
-        };
-      },
-    },
-    c: {
-      name: 'Part C: Sticky Sidebar',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Excellent! Your sidebar should now stick to the viewport. Test by scrolling to make sure it stays in place.',
-        };
-      },
-    },
-    d: {
-      name: 'Part D: Anchor Links',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Perfect! Your anchor links should smoothly scroll to each section. Check that scroll-margin-top gives good spacing.',
-        };
-      },
-    },
-    e: {
-      name: 'Part E: Decorative Elements',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Beautiful! Your decorative elements should be visible but not interfere with text or clicks (pointer-events: none).',
-        };
-      },
-    },
-    f: {
-      name: 'Part F: Finishing Touches',
-      validate() {
-        return {
-          passed: true,
-          message: '✓ Outstanding work! You\'ve completed all the main requirements. Don\'t forget the optional enhancements!',
-        };
-      },
-    },
-  },
-
-  init() {
-    const validateButtons = document.querySelectorAll('.validate-checkpoint');
-
-    validateButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const step = button.dataset.step;
-        this.validate(step);
-      });
-    });
-  },
-
-  validate(step) {
-    const validator = this.validators[step];
-    if (!validator) return;
-
-    const result = validator.validate();
-    const feedbackEl = document.querySelector(
-      `.checkpoint[data-checkpoint="${step}"] .checkpoint-feedback`
-    );
-
-    if (feedbackEl) {
-      feedbackEl.classList.remove('hidden', 'success', 'info');
-      feedbackEl.classList.add(result.passed ? 'success' : 'info');
-      feedbackEl.textContent = result.message;
-
-      if (result.passed) {
-        Progress.markComplete(step);
-
-        // Add confetti effect or celebration
-        this.celebrate(step);
-      }
-    }
-  },
-
-  celebrate(step) {
-    // Simple celebration animation
-    const feedbackEl = document.querySelector(
-      `.checkpoint[data-checkpoint="${step}"] .checkpoint-feedback`
-    );
-
-    if (feedbackEl) {
-      feedbackEl.style.animation = 'none';
-      setTimeout(() => {
-        feedbackEl.style.animation = 'pulse 0.5s ease';
-      }, 10);
-    }
-  },
-};
-
 // ===== Reflections =====
 const Reflections = {
   init() {
-    const saveButtons = document.querySelectorAll('.save-reflection');
+    const saveButtons = document.querySelectorAll('.btn-save-reflection');
 
     saveButtons.forEach(button => {
       button.addEventListener('click', () => {
@@ -305,6 +149,23 @@ const Reflections = {
 
     // Load saved reflections
     this.loadAll();
+
+    // Auto-save on input (debounced)
+    const textareas = document.querySelectorAll('.reflection-input');
+    textareas.forEach(textarea => {
+      let timeout;
+      textarea.addEventListener('input', () => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const step = textarea.dataset.step;
+          const content = textarea.value.trim();
+          if (content) {
+            TutorialState.reflections[step] = content;
+            Storage.save();
+          }
+        }, 1000);
+      });
+    });
 
     // Copy all reflections button
     const copyButton = document.getElementById('copyReflections');
@@ -331,7 +192,7 @@ const Reflections = {
     setTimeout(() => textarea.classList.remove('saved'), 2000);
 
     // Update button text temporarily
-    const button = document.querySelector(`.save-reflection[data-step="${step}"]`);
+    const button = document.querySelector(`.btn-save-reflection[data-step="${step}"]`);
     if (button) {
       const originalText = button.textContent;
       button.textContent = '✓ Saved!';
@@ -370,185 +231,22 @@ const Reflections = {
       }
     });
 
+    if (text === '# Flexbox Tutorial Reflections\n\n') {
+      alert('No reflections to copy yet. Write some reflections first!');
+      return;
+    }
+
     // Copy to clipboard
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        alert('All reflections copied to clipboard!');
+        alert('All reflections copied to clipboard! Paste them into your Canvas submission.');
       })
       .catch(err => {
         console.error('Failed to copy:', err);
         // Fallback: show in alert
-        alert(text);
+        prompt('Copy this text:', text);
       });
-  },
-};
-
-// ===== Live Code Editor =====
-const CodeEditor = {
-  autoPreviewTimeout: null,
-
-  init() {
-    // Tab switching
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const editors = document.querySelectorAll('.code-editor');
-
-    tabButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const editorType = button.dataset.editor;
-
-        // Update tabs
-        tabButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-
-        // Update editors
-        editors.forEach(editor => {
-          editor.classList.remove('active');
-        });
-        document.getElementById(`${editorType}Editor`).classList.add('active');
-      });
-    });
-
-    // Update preview button
-    const updateButton = document.getElementById('updatePreview');
-    if (updateButton) {
-      updateButton.addEventListener('click', () => this.updatePreview());
-    }
-
-    // Auto-preview toggle
-    const autoPreviewCheckbox = document.getElementById('autoPreview');
-    if (autoPreviewCheckbox) {
-      autoPreviewCheckbox.addEventListener('change', e => {
-        TutorialState.autoPreview = e.target.checked;
-      });
-    }
-
-    // Auto-save code on input
-    const htmlEditor = document.getElementById('htmlEditor');
-    const cssEditor = document.getElementById('cssEditor');
-
-    [htmlEditor, cssEditor].forEach(editor => {
-      editor.addEventListener('input', () => {
-        Storage.saveCode();
-
-        // Auto-preview if enabled
-        if (TutorialState.autoPreview) {
-          clearTimeout(this.autoPreviewTimeout);
-          this.autoPreviewTimeout = setTimeout(() => {
-            this.updatePreview();
-          }, 1000);
-        }
-      });
-    });
-
-    // Download button
-    const downloadButton = document.getElementById('downloadCode');
-    if (downloadButton) {
-      downloadButton.addEventListener('click', () => this.downloadFiles());
-    }
-
-    // Load saved code
-    Storage.load();
-  },
-
-  updatePreview() {
-    const htmlCode = document.getElementById('htmlEditor').value;
-    const cssCode = document.getElementById('cssEditor').value;
-    const previewFrame = document.getElementById('preview');
-
-    if (!previewFrame) return;
-
-    const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-
-    const fullHTML = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preview</title>
-  <style>
-    ${cssCode}
-  </style>
-</head>
-<body>
-  ${htmlCode}
-</body>
-</html>
-    `;
-
-    previewDoc.open();
-    previewDoc.write(fullHTML);
-    previewDoc.close();
-  },
-
-  downloadFiles() {
-    const htmlCode = document.getElementById('htmlEditor').value;
-    const cssCode = document.getElementById('cssEditor').value;
-
-    if (!htmlCode && !cssCode) {
-      alert('Please write some code first!');
-      return;
-    }
-
-    // Download HTML
-    if (htmlCode) {
-      this.downloadFile('index.html', htmlCode);
-    }
-
-    // Download CSS
-    if (cssCode) {
-      this.downloadFile('styles.css', cssCode);
-    }
-
-    alert('Files downloaded! Check your Downloads folder.');
-  },
-
-  downloadFile(filename, content) {
-    const blob = new Blob([content], { type: 'text/plain' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  },
-};
-
-// ===== Smooth Scroll Navigation =====
-const Navigation = {
-  init() {
-    const navLinks = document.querySelectorAll('.step-list a[data-step]');
-
-    navLinks.forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetSection = document.getElementById(targetId);
-
-        if (targetSection) {
-          // Expand the section
-          const header = targetSection.querySelector('.section-header');
-          if (header) {
-            const allHeaders = document.querySelectorAll('.section-header[data-section]');
-            allHeaders.forEach(h => h.classList.remove('expanded'));
-            header.classList.add('expanded');
-          }
-
-          // Scroll to section
-          targetSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-
-          // Mark as in progress
-          const step = link.dataset.step;
-          Progress.markInProgress(step);
-        }
-      });
-    });
   },
 };
 
@@ -565,8 +263,7 @@ const Reset = {
     const confirmed = confirm(
       'Are you sure you want to reset all progress? This will clear:\n\n' +
         '• Completed steps\n' +
-        '• Saved reflections\n' +
-        '• Saved code\n\n' +
+        '• Saved reflections\n\n' +
         'This cannot be undone.'
     );
 
@@ -574,19 +271,12 @@ const Reset = {
       Storage.clear();
 
       // Clear UI
-      document.querySelectorAll('.step-status').forEach(status => {
-        status.classList.remove('completed', 'in-progress');
+      document.querySelectorAll('.section-checkbox').forEach(checkbox => {
+        checkbox.checked = false;
       });
 
       document.querySelectorAll('.reflection-input').forEach(input => {
         input.value = '';
-      });
-
-      document.getElementById('htmlEditor').value = '';
-      document.getElementById('cssEditor').value = '';
-
-      document.querySelectorAll('.checkpoint-feedback').forEach(feedback => {
-        feedback.classList.add('hidden');
       });
 
       Progress.update();
@@ -600,17 +290,11 @@ const Reset = {
 const Shortcuts = {
   init() {
     document.addEventListener('keydown', e => {
-      // Ctrl/Cmd + Enter to update preview
-      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-        e.preventDefault();
-        CodeEditor.updatePreview();
-      }
-
-      // Ctrl/Cmd + S to save code (prevent default browser save)
+      // Ctrl/Cmd + S to save reflections (prevent default browser save)
       if ((e.ctrlKey || e.metaKey) && e.key === 's') {
         e.preventDefault();
-        Storage.saveCode();
-        this.showToast('Code saved!');
+        Storage.save();
+        this.showToast('Progress saved!');
       }
     });
   },
@@ -632,6 +316,35 @@ const Shortcuts = {
       animation: slideIn 0.3s ease;
     `;
 
+    // Add CSS animations if not already added
+    if (!document.getElementById('toast-styles')) {
+      const style = document.createElement('style');
+      style.id = 'toast-styles';
+      style.textContent = `
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        @keyframes slideOut {
+          from {
+            transform: translateX(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+
     document.body.appendChild(toast);
 
     setTimeout(() => {
@@ -641,38 +354,6 @@ const Shortcuts = {
   },
 };
 
-// ===== Add CSS animations =====
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideOut {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-  }
-`;
-document.head.appendChild(style);
-
 // ===== Initialize Everything =====
 document.addEventListener('DOMContentLoaded', () => {
   console.log('🎓 Interactive Flexbox Tutorial loaded!');
@@ -681,12 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
   Storage.load();
 
   // Initialize all modules
-  Accordion.init();
+  SectionCheckboxes.init();
   Solutions.init();
-  Checkpoints.init();
   Reflections.init();
-  CodeEditor.init();
-  Navigation.init();
   Reset.init();
   Shortcuts.init();
 
@@ -694,11 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
   Progress.update();
 
   console.log('✓ All features initialized');
-  console.log('Keyboard shortcuts: Ctrl/Cmd+Enter = Update Preview, Ctrl/Cmd+S = Save Code');
+  console.log('Keyboard shortcut: Ctrl/Cmd+S = Save Progress');
 });
 
 // Auto-save before leaving
 window.addEventListener('beforeunload', () => {
   Storage.save();
-  Storage.saveCode();
 });

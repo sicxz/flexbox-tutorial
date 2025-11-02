@@ -8,10 +8,8 @@
 :root {
   --primary-color: #3b82f6;
   --primary-dark: #2563eb;
-  --secondary-color: #64748b;
   --success-color: #10b981;
   --warning-color: #f59e0b;
-  --danger-color: #ef4444;
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
@@ -20,7 +18,6 @@
   --text-secondary: #475569;
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 html {
@@ -41,6 +38,7 @@ code {
   padding: 0.125rem 0.375rem;
   border-radius: 4px;
   font-size: 0.9em;
+  color: #c7254e;
 }
 
 pre {
@@ -64,7 +62,7 @@ pre code {
 .tutorial-header {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 2rem 2rem 1.5rem;
+  padding: 2rem 1.5rem 1.5rem;
   box-shadow: var(--shadow-md);
   position: sticky;
   top: 0;
@@ -111,126 +109,74 @@ pre code {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Tutorial Container (Split View) ===== */
-.tutorial-container {
-  display: flex;
-  gap: 0;
-  max-width: 1800px;
+/* ===== Main Content Container (Single Column) ===== */
+.tutorial-content {
+  max-width: 900px;
   margin: 0 auto;
-  min-height: calc(100vh - 140px);
+  padding: 2rem 1.5rem;
 }
 
-/* ===== Left Sidebar: Tutorial Steps ===== */
-.tutorial-steps {
-  width: 320px;
-  flex: 0 0 320px;
-  background: var(--bg-primary);
-  border-right: 1px solid var(--border-color);
-  position: sticky;
-  top: 140px;
-  height: calc(100vh - 140px);
-  overflow-y: auto;
-  padding: 1.5rem;
+/* ===== CodePen Section ===== */
+.codepen-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--primary-color);
 }
 
-.tutorial-nav h2 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+.codepen-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
   color: var(--text-primary);
 }
 
-.step-list {
-  list-style: none;
-  margin-bottom: 2rem;
-}
-
-.step-list li {
-  margin-bottom: 0.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.step-list a {
-  flex: 1;
-  text-decoration: none;
+.codepen-section > p {
   color: var(--text-secondary);
-  padding: 0.625rem 0.875rem;
-  border-radius: 6px;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  transition: all 0.2s;
-  display: block;
+  margin-bottom: 1.5rem;
 }
 
-.step-list a:hover {
-  background: var(--bg-tertiary);
-  color: var(--primary-color);
+.codepen-cta {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  border-radius: 8px;
 }
 
-.step-list a:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-.step-status {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.75rem;
-  flex-shrink: 0;
-}
-
-.step-status.completed {
-  background: var(--success-color);
-  border-color: var(--success-color);
+.btn-codepen {
+  display: inline-block;
+  padding: 0.875rem 2rem;
+  background: var(--primary-color);
   color: white;
-}
-
-.step-status.completed::after {
-  content: '✓';
-}
-
-.step-status.in-progress {
-  background: var(--warning-color);
-  border-color: var(--warning-color);
-  color: white;
-}
-
-.step-status.in-progress::after {
-  content: '●';
-}
-
-.reflection-summary {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
-}
-
-.reflection-summary h3 {
-  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 8px;
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  font-size: 1.125rem;
+  transition: all 0.2s;
+  box-shadow: var(--shadow-md);
 }
 
-.reflection-summary button {
-  width: 100%;
-  margin-bottom: 0.5rem;
+.btn-codepen:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Main Workspace: Scrollable Content ===== */
-.workspace {
-  flex: 1;
-  padding: 2rem;
-  overflow-y: auto;
-  max-width: 1200px;
+.codepen-hint {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
 }
 
+.codepen-embed {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+/* ===== Tutorial Introduction ===== */
 .tutorial-intro {
   background: white;
   padding: 2rem;
@@ -247,78 +193,76 @@ pre code {
 
 .tutorial-intro ul {
   margin-left: 1.5rem;
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }
 
 .tutorial-intro li {
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
 }
 
-/* ===== Tutorial Sections (Accordion) ===== */
+/* ===== Tutorial Sections ===== */
 .tutorial-section {
   background: white;
   border-radius: 12px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   box-shadow: var(--shadow-sm);
   overflow: hidden;
-  scroll-margin-top: 160px;
+  scroll-margin-top: 120px;
 }
 
 .section-header {
   background: var(--bg-tertiary);
-  padding: 1.25rem 1.5rem;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.2s;
+  padding: 1.5rem 2rem;
   border-bottom: 1px solid var(--border-color);
-}
-
-.section-header:hover {
-  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .section-header h2 {
-  font-size: 1.375rem;
+  font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
+  flex: 1;
+}
+
+.section-progress {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 }
 
-.section-toggle {
-  display: inline-block;
-  transition: transform 0.3s;
-  font-size: 1.125rem;
-  color: var(--primary-color);
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  user-select: none;
 }
 
-.section-header.expanded .section-toggle {
-  transform: rotate(90deg);
+.checkbox-label input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
 }
 
-.section-content {
-  padding: 1.5rem;
-  display: none;
-}
-
-.section-header.expanded + .section-content {
-  display: block;
-}
-
-/* Always show workspace and submission sections */
-.workspace-section .section-content,
-#submission .section-content {
-  display: block;
+.section-checkbox:checked + span {
+  color: var(--success-color);
+  font-weight: 600;
 }
 
 /* ===== Step Cards ===== */
 .step-card {
-  background: var(--bg-secondary);
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-bottom: 1.5rem;
-  border-left: 4px solid var(--primary-color);
+  padding: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.step-card:last-child {
+  border-bottom: none;
 }
 
 .step-card h3 {
@@ -336,17 +280,28 @@ pre code {
 }
 
 .step-card p {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   color: var(--text-secondary);
 }
 
 .step-card ul {
   margin-left: 1.5rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .step-card li {
-  margin-bottom: 0.375rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.step-card ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.step-card ol li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
 }
 
 /* ===== Tip & Warning Boxes ===== */
@@ -360,6 +315,8 @@ pre code {
 
 .tip-box strong {
   color: var(--primary-dark);
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .warning-box {
@@ -372,6 +329,8 @@ pre code {
 
 .warning-box strong {
   color: #d97706;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 /* ===== Solution Boxes ===== */
@@ -435,7 +394,7 @@ pre code {
   border: 2px solid var(--primary-color);
   border-radius: 8px;
   padding: 1.5rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem 2rem;
 }
 
 .checkpoint h4 {
@@ -448,53 +407,30 @@ pre code {
 .checklist {
   list-style: none;
   margin-left: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
 }
 
 .checklist li {
-  padding-left: 1.75rem;
-  position: relative;
-  margin-bottom: 0.5rem;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: var(--text-secondary);
 }
 
-.checklist li::before {
-  content: '◻';
-  position: absolute;
-  left: 0;
-  color: var(--secondary-color);
-  font-size: 1.125rem;
-}
-
-.checkpoint-feedback {
-  margin-top: 1rem;
-  padding: 1rem;
-  border-radius: 6px;
-  font-weight: 500;
-}
-
-.checkpoint-feedback.hidden {
-  display: none;
-}
-
-.checkpoint-feedback.success {
-  background: #d1fae5;
-  color: #065f46;
-  border: 1px solid var(--success-color);
-}
-
-.checkpoint-feedback.info {
-  background: #dbeafe;
-  color: #1e40af;
-  border: 1px solid var(--primary-color);
+.checklist input[type="checkbox"] {
+  margin-top: 0.25rem;
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* ===== Reflection Cards ===== */
 .reflection-card {
-  background: white;
+  background: #faf5ff;
   border: 2px solid #e9d5ff;
   border-radius: 8px;
   padding: 1.5rem;
-  margin: 1.5rem 0;
+  margin: 1.5rem 2rem 2rem;
 }
 
 .reflection-card h4 {
@@ -513,18 +449,19 @@ pre code {
 .reflection-input {
   width: 100%;
   padding: 0.75rem;
-  border: 2px solid var(--border-color);
+  border: 2px solid #e9d5ff;
   border-radius: 6px;
   font-family: inherit;
   font-size: 0.9375rem;
   line-height: 1.6;
   resize: vertical;
   transition: border-color 0.2s;
+  margin-bottom: 0.75rem;
 }
 
 .reflection-input:focus {
   outline: none;
-  border-color: var(--primary-color);
+  border-color: #a78bfa;
 }
 
 .reflection-input.saved {
@@ -536,8 +473,7 @@ pre code {
 .btn-primary,
 .btn-secondary,
 .btn-toggle-solution,
-.validate-checkpoint,
-.save-reflection {
+.btn-save-reflection {
   padding: 0.625rem 1.25rem;
   border: none;
   border-radius: 6px;
@@ -580,163 +516,43 @@ pre code {
   background: #fde68a;
 }
 
-.validate-checkpoint {
-  background: var(--success-color);
-  color: white;
-}
-
-.validate-checkpoint:hover {
-  background: #059669;
-}
-
-.save-reflection {
+.btn-save-reflection {
   background: #e9d5ff;
   color: #7c3aed;
-  margin-top: 0.75rem;
 }
 
-.save-reflection:hover {
+.btn-save-reflection:hover {
   background: #ddd6fe;
 }
 
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible,
 .btn-toggle-solution:focus-visible,
-.validate-checkpoint:focus-visible,
-.save-reflection:focus-visible {
+.btn-save-reflection:focus-visible {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-/* ===== Live Code Workspace ===== */
-.code-workspace {
-  background: var(--bg-secondary);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1.5rem 0;
+/* ===== Submission Section ===== */
+#submission {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dbeafe 100%);
 }
 
-.editor-tabs {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid var(--border-color);
+#submission h2 {
+  padding: 1.5rem 2rem;
+  font-size: 1.75rem;
+  margin: 0;
 }
 
-.tab-btn {
-  padding: 0.625rem 1.25rem;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  transition: all 0.2s;
-}
-
-.tab-btn:hover {
-  color: var(--primary-color);
-}
-
-.tab-btn.active {
-  color: var(--primary-color);
-  border-bottom-color: var(--primary-color);
-}
-
-.editor-container {
-  position: relative;
-  min-height: 400px;
-}
-
-.code-editor {
-  width: 100%;
-  min-height: 400px;
-  padding: 1rem;
-  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-  font-size: 0.875rem;
-  line-height: 1.6;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
-  background: white;
-  resize: vertical;
-  display: none;
-  tab-size: 2;
-}
-
-.code-editor.active {
-  display: block;
-}
-
-.code-editor:focus {
-  outline: none;
-  border-color: var(--primary-color);
-}
-
-.editor-actions {
+.reflection-export {
   display: flex;
   gap: 1rem;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.auto-preview-toggle {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9375rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.auto-preview-toggle input[type="checkbox"] {
-  cursor: pointer;
-}
-
-/* ===== Preview Container ===== */
-.preview-container {
-  margin: 2rem 0;
-  background: white;
-  border-radius: 8px;
-  padding: 1.5rem;
-  border: 1px solid var(--border-color);
-}
-
-.preview-container h3 {
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-#preview {
-  width: 100%;
-  min-height: 500px;
-  border: 2px solid var(--border-color);
-  border-radius: 6px;
-  background: white;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
 }
 
 /* ===== Responsive Design ===== */
-@media (max-width: 1024px) {
-  .tutorial-container {
-    flex-direction: column;
-  }
-
-  .tutorial-steps {
-    width: 100%;
-    position: static;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .workspace {
-    padding: 1.5rem;
-  }
-}
-
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .tutorial-header {
     padding: 1.5rem 1rem;
   }
@@ -745,18 +561,76 @@ pre code {
     font-size: 1.5rem;
   }
 
-  .workspace {
+  .tutorial-content {
+    padding: 1.5rem 1rem;
+  }
+
+  .codepen-section,
+  .tutorial-intro,
+  .step-card {
+    padding: 1.5rem;
+  }
+
+  .checkpoint,
+  .reflection-card {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
     padding: 1rem;
   }
 
-  .step-card,
-  .checkpoint,
-  .reflection-card {
-    padding: 1rem;
+  .section-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.25rem;
   }
 
   pre {
     font-size: 0.75rem;
+  }
+
+  .btn-codepen {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .reflection-export {
+    flex-direction: column;
+  }
+
+  .reflection-export button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutorial-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .tutorial-header > p {
+    font-size: 0.875rem;
+  }
+
+  .tutorial-content {
+    padding: 1rem;
+  }
+
+  .codepen-section,
+  .tutorial-intro,
+  .step-card {
+    padding: 1rem;
+  }
+
+  .checkpoint,
+  .reflection-card {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .section-header {
+    padding: 1rem;
   }
 }
 
@@ -768,10 +642,3 @@ pre code {
 .text-center {
   text-align: center;
 }
-
-.mt-1 { margin-top: 0.5rem; }
-.mt-2 { margin-top: 1rem; }
-.mt-3 { margin-top: 1.5rem; }
-.mb-1 { margin-bottom: 0.5rem; }
-.mb-2 { margin-bottom: 1rem; }
-.mb-3 { margin-bottom: 1.5rem; }
