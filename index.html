@@ -48,85 +48,39 @@
 
       <div class="step-card">
         <h3>A1) Start file + semantic structure</h3>
-        <p>Create <code>index.html</code> with a semantic skeleton. <strong>Do not change class names;</strong> add your content where noted.</p>
+        <p>Create your HTML with a semantic skeleton. <strong>Do not change class names;</strong> add your content where noted.</p>
 
         <p>Your HTML should include:</p>
         <ul>
-          <li>A <code>&lt;header&gt;</code> with page title and description</li>
-          <li>A <code>&lt;main class="layout"&gt;</code> container</li>
-          <li>A <code>&lt;nav class="sidebar"&gt;</code> with 5 anchor links</li>
-          <li>A <code>&lt;div class="content"&gt;</code> with 3-5 sections</li>
-          <li>Each section needs a <code>&lt;div class="deco"&gt;</code> for decoration</li>
-          <li>A <code>&lt;footer&gt;</code> with basic info</li>
+          <li>A <code>&lt;header&gt;</code> with an <code>&lt;h1&gt;</code> for your page title and a <code>&lt;p&gt;</code> for a description</li>
+          <li>A <code>&lt;main class="container"&gt;</code> element</li>
+          <li>A <code>&lt;nav class="sidebar"&gt;</code> with 5 anchor links. Use <code>&lt;a href="#"&gt;&lt;/a&gt;</code> as placeholders for now—we'll connect them to sections next.</li>
+          <li>A <code>&lt;div class="content"&gt;</code> with 3-5 sections. Give each section an id attribute labeled <code>id="section-1"</code>, <code>id="section-2"</code>, etc.</li>
+          <li>Each section needs a <code>&lt;div class="deco" id="deco-1"&gt;</code> for decoration. Give each deco div a unique id: <code>id="deco-1"</code>, <code>id="deco-2"</code>, etc.</li>
+          <li>A <code>&lt;footer&gt;</code> with basic info (note: place this <em>outside</em> the <code>&lt;main&gt;</code> element)</li>
         </ul>
 
-        <button class="btn-toggle-solution" data-solution="solution-a1">💡 Show Solution</button>
+        <div class="tip-box">
+          <strong>📝 Note:</strong> The <code>&lt;footer&gt;</code> should be placed outside (after) the <code>&lt;main&gt;</code> element. The <code>&lt;main&gt;</code> element represents the dominant content of your page—in this case, the two-column layout with sidebar and content. The footer contains supplementary information and isn't part of that flex layout.
+        </div>
+
+        <button class="btn-toggle-solution" data-solution="solution-a1">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-a1">
-          <h4>HTML Structure Solution:</h4>
-          <pre><code>&lt;!doctype html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-  &lt;meta charset="utf-8" /&gt;
-  &lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;
-  &lt;title&gt;Two-Column Flexbox — Sticky Nav&lt;/title&gt;
-  &lt;link rel="stylesheet" href="styles.css" /&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;header&gt;
-    &lt;h1&gt;My Flexbox Layout&lt;/h1&gt;
-    &lt;p&gt;A sticky sidebar navigation example&lt;/p&gt;
-  &lt;/header&gt;
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Header structure:</strong> Inside your <code>&lt;header&gt;</code>, create an <code>&lt;h1&gt;</code> element with your page title, followed by a <code>&lt;p&gt;</code> with a brief description.</li>
+            <li><strong>Main container:</strong> Create a <code>&lt;main class="container"&gt;</code> element—this will hold both your sidebar and content.</li>
+            <li><strong>Sidebar navigation:</strong> Inside <code>&lt;main&gt;</code>, add a <code>&lt;nav class="sidebar"&gt;</code>. You can use an <code>&lt;ol&gt;</code> or <code>&lt;ul&gt;</code> with 5 list items. Each list item should contain <code>&lt;a href="#"&gt;Link Text&lt;/a&gt;</code>.</li>
+            <li><strong>Content area:</strong> After the nav, add a <code>&lt;div class="content"&gt;</code>. Inside this div, create 3–5 <code>&lt;section&gt;</code> elements. Give each section a unique id: <code>id="section-1"</code>, <code>id="section-2"</code>, etc.</li>
+            <li><strong>Section content:</strong> Each section should have an <code>&lt;h2&gt;</code> heading, at least one <code>&lt;p&gt;</code> paragraph, and a <code>&lt;div class="deco" id="deco-1"&gt;&lt;/div&gt;</code> for decoration. Give each deco div its own unique id to style them differently later.</li>
+            <li><strong>Connecting links:</strong> Once your sections have ids, update each anchor's href from <code>#</code> to match the section id (e.g., <code>href="#section-1"</code>).</li>
+            <li><strong>Footer:</strong> End with a <code>&lt;footer&gt;</code> containing a <code>&lt;small&gt;</code> or paragraph with your copyright or name. Remember: the footer goes <em>outside</em> the <code>&lt;main&gt;</code> element.</li>
+          </ul>
 
-  &lt;main class="layout"&gt;
-    &lt;nav class="sidebar" aria-label="Section navigation"&gt;
-      &lt;ol class="nav-list"&gt;
-        &lt;li&gt;&lt;a href="#section-1"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#section-2"&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#section-3"&gt;Main Content&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#section-4"&gt;Advanced Topics&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href="#section-5"&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
-      &lt;/ol&gt;
-    &lt;/nav&gt;
-
-    &lt;div class="content"&gt;
-      &lt;section id="section-1" class="panel"&gt;
-        &lt;h2&gt;Introduction&lt;/h2&gt;
-        &lt;p&gt;Welcome to our content section.&lt;/p&gt;
-        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;/section&gt;
-
-      &lt;section id="section-2" class="panel"&gt;
-        &lt;h2&gt;Getting Started&lt;/h2&gt;
-        &lt;p&gt;Let's begin our journey.&lt;/p&gt;
-        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;/section&gt;
-
-      &lt;section id="section-3" class="panel"&gt;
-        &lt;h2&gt;Main Content&lt;/h2&gt;
-        &lt;p&gt;Here's the main content.&lt;/p&gt;
-        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;/section&gt;
-
-      &lt;section id="section-4" class="panel"&gt;
-        &lt;h2&gt;Advanced Topics&lt;/h2&gt;
-        &lt;p&gt;Diving deeper into advanced concepts.&lt;/p&gt;
-        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;/section&gt;
-
-      &lt;section id="section-5" class="panel"&gt;
-        &lt;h2&gt;Conclusion&lt;/h2&gt;
-        &lt;p&gt;Wrapping up our discussion.&lt;/p&gt;
-        &lt;div class="deco" aria-hidden="true"&gt;&lt;/div&gt;
-      &lt;/section&gt;
-    &lt;/div&gt;
-  &lt;/main&gt;
-
-  &lt;footer&gt;
-    &lt;small&gt;© 2025 Flexbox Tutorial&lt;/small&gt;
-  &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
+          <div class="tip-box">
+            <strong>📝 CodePen Note:</strong> The <code>&lt;!doctype html&gt;</code>, <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code>, and <code>&lt;body&gt;</code> tags are automatically added by CodePen, so you don't need to include them. Start directly with your <code>&lt;header&gt;</code> element!
+          </div>
         </div>
 
         <div class="resource-links">
@@ -138,12 +92,111 @@
         </div>
       </div>
 
+      <div class="step-card">
+        <h3>A2) Add Content</h3>
+        <p>Now that you have your structure, you need content to fill it! We've provided sample flexbox-themed content for you to use.</p>
+
+        <p><strong>What you'll get:</strong></p>
+        <ul>
+          <li>5 navigation link titles (e.g., "What is Flexbox?", "Flex Containers", etc.)</li>
+          <li>5 sections of varied-length content about flexbox concepts</li>
+          <li>Mix of educational and engaging text to test your layout</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-a2">📄 Show Sample Content</button>
+
+        <div class="solution-box hidden" id="solution-a2">
+          <h4>Sample Content:</h4>
+          <div style="max-height: 400px; overflow-y: auto; background: #f9f9f9; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;">
+            <pre style="white-space: pre-wrap; font-family: monospace; font-size: 0.9em;">=====================================
+NAVIGATION LINK TITLES (5 items)
+=====================================
+
+1. What is Flexbox?
+2. Flex Containers
+3. Flex Items & Alignment
+4. Common Patterns
+5. Best Practices
+
+=====================================
+SECTION 1: What is Flexbox?
+=====================================
+
+Flexbox, short for Flexible Box Layout, is a powerful CSS layout module designed to help us create responsive and flexible layouts with ease. Before flexbox, developers relied heavily on floats, positioning, and complex calculations to achieve even simple layouts. Flexbox changed the game by introducing a more intuitive way to distribute space and align content within a container.
+
+The beauty of flexbox lies in its one-dimensional focus. It excels at arranging items in a single direction—either as a row or as a column. This makes it perfect for navigation bars, card layouts, toolbars, and any interface where you need elements to adapt fluidly to different screen sizes. Whether you're building a mobile-first design or ensuring your desktop layout scales gracefully, flexbox provides the flexibility modern web development demands.
+
+=====================================
+SECTION 2: Flex Containers
+=====================================
+
+Every flexbox layout starts with a flex container. When you apply display: flex to an element, it becomes a flex container, and its direct children automatically become flex items. This parent-child relationship is fundamental to understanding how flexbox works. The container controls the overall layout direction, spacing, and alignment of its items.
+
+Flex containers come with several powerful properties. The flex-direction property determines whether items flow horizontally (row) or vertically (column). You can also reverse the order with row-reverse or column-reverse. The justify-content property controls spacing along the main axis—whether items should be packed to the start, centered, spaced evenly, or spread out with space between or around them.
+
+Another essential property is align-items, which handles alignment along the cross axis (perpendicular to the main axis). This is where you can vertically center items effortlessly, align them to the top or bottom, or stretch them to fill the container's height. The gap property is a modern addition that adds consistent spacing between flex items without needing margins, making your CSS cleaner and more maintainable.
+
+Flex containers also support wrapping with the flex-wrap property. By default, flex items try to squeeze into a single line, but enabling wrapping allows items to break into multiple rows or columns when space runs out. This is incredibly useful for responsive grids and galleries that adapt to varying viewport sizes.
+
+=====================================
+SECTION 3: Flex Items & Alignment
+=====================================
+
+While the container sets the stage, flex items have their own set of properties that give you fine-grained control over individual elements. The most important of these are flex-grow, flex-shrink, and flex-basis, often combined into the flex shorthand property. Understanding these three values is key to mastering flexbox layouts.
+
+The flex-grow property determines how much an item should expand relative to its siblings when extra space is available. A value of 0 means the item won't grow at all, while a value of 1 (or higher) allows it to claim a share of the remaining space. This is perfect for creating flexible columns where one section takes up most of the screen while a sidebar stays fixed.
+
+Conversely, flex-shrink controls how much an item can shrink when space is limited. By default, items can shrink to prevent overflow, but setting flex-shrink: 0 keeps an item at its defined size no matter what. This is useful for elements like logos or buttons that should maintain their dimensions regardless of screen size.
+
+The flex-basis property sets the initial size of a flex item before any growing or shrinking occurs. Think of it as the starting point—similar to width for rows or height for columns, but more flexible. You can use length values like 300px, percentages, or even auto to let the content determine the size.
+
+Flex items also have their own align-self property, which overrides the container's align-items setting for individual elements. This is handy when most items should align one way, but one or two need special positioning. Whether you need an icon centered while text aligns to the top, or a call-to-action button pushed to the bottom, align-self gives you that control.
+
+=====================================
+SECTION 4: Common Patterns
+=====================================
+
+Flexbox shines when it comes to solving common layout challenges that used to require hacky workarounds. One of the most popular patterns is the "holy grail" layout—a header at the top, a footer at the bottom, and a main content area with a sidebar. Flexbox makes this trivial with a combination of flex-direction: column for the overall structure and flex-direction: row for the main content area.
+
+Navigation bars are another perfect use case. Whether you want a horizontal menu with evenly spaced items or a vertical sidebar with aligned links, flexbox handles it elegantly. Using justify-content: space-between spreads items across the full width, while align-items: center ensures text and icons line up perfectly. Add flex-wrap: wrap, and your navigation automatically adapts to smaller screens.
+
+Card layouts benefit immensely from flexbox's flexibility. Imagine a row of product cards where each card has an image, title, description, and button. With flexbox, you can ensure all cards have the same height, all buttons align to the bottom, and content adjusts gracefully when users resize their browsers. The flex-grow and flex-shrink properties ensure cards expand or contract proportionally, maintaining a balanced, professional appearance.
+
+=====================================
+SECTION 5: Best Practices
+=====================================
+
+As you build with flexbox, keep a few best practices in mind. First, avoid applying too many flex properties unnecessarily. Start simple—set display: flex on the container and see how far that gets you before adding complexity. Many layouts work beautifully with just a few key properties like gap, justify-content, and align-items.
+
+Second, remember that flexbox is one-dimensional. If you find yourself fighting to control both rows and columns simultaneously, you might need CSS Grid instead. Flexbox and Grid complement each other—flexbox for linear layouts, Grid for two-dimensional structures. Don't be afraid to combine them within the same project. Modern web development is about choosing the right tool for each job, and knowing when to reach for flexbox versus Grid is a valuable skill that will make your layouts more maintainable and performant.</pre>
+          </div>
+
+          <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+            <button class="btn-primary" onclick="navigator.clipboard.writeText(document.querySelector('#solution-a2 pre').textContent).then(() => alert('Content copied to clipboard!'))">📋 Copy All Content</button>
+            <a href="sample-content.txt" download class="btn-secondary" style="display: inline-block; padding: 0.5rem 1rem; text-decoration: none;">💾 Download sample-content.txt</a>
+          </div>
+
+          <div class="tip-box" style="margin-top: 1rem;">
+            <strong>📝 How to use:</strong>
+            <ol>
+              <li>Copy the navigation titles and paste them into your 5 anchor links</li>
+              <li>Copy each section's content and paste into the corresponding section in your HTML</li>
+              <li>Make sure each section has an <code>&lt;h2&gt;</code> with the title and paragraphs with the content</li>
+              <li>Don't forget to keep your <code>&lt;div class="deco" id="deco-#"&gt;&lt;/div&gt;</code> in each section!</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
       <div class="checkpoint">
         <h4>✅ Checkpoint A</h4>
         <ul class="checklist">
-          <li><input type="checkbox" /> Do you have five nav items with <code>href="#section-x"</code>?</li>
-          <li><input type="checkbox" /> Do your sections have matching ids?</li>
-          <li><input type="checkbox" /> Did you include a <code>&lt;div class="deco"&gt;</code> inside each section?</li>
+          <li><input type="checkbox" /> Do you have five nav items with anchor links?</li>
+          <li><input type="checkbox" /> Do your sections have unique ids like <code>id="section-1"</code>, <code>id="section-2"</code>, etc.?</li>
+          <li><input type="checkbox" /> Did you update your anchor hrefs to match section ids (e.g., <code>href="#section-1"</code>)?</li>
+          <li><input type="checkbox" /> Did you add content to your navigation links and sections from the sample content?</li>
+          <li><input type="checkbox" /> Did you include a <code>&lt;div class="deco"&gt;</code> with a unique id inside each section (e.g., <code>id="deco-1"</code>)?</li>
+          <li><input type="checkbox" /> Is your <code>&lt;footer&gt;</code> placed outside the <code>&lt;main&gt;</code> element?</li>
         </ul>
       </div>
 
@@ -172,53 +225,64 @@
       </div>
 
       <div class="step-card">
-        <h3>B1) Layout container</h3>
-        <p>Create <code>styles.css</code> and add the Flexbox parent. This sets up your two-column layout.</p>
+        <h3>B1) Identify the Flexbox parent</h3>
+        <p><strong>Question:</strong> What element do you think the flexbox parent is? Why?</p>
 
-        <button class="btn-toggle-solution" data-solution="solution-b1">💡 Show Solution</button>
+        <textarea
+          class="reflection-input"
+          placeholder="Type your answer here... (e.g., 'I think the flexbox parent is...')"
+          rows="3"
+          style="margin: 1rem 0;"></textarea>
+
+        <div class="tip-box">
+          <strong>💡 Hint:</strong> The flexbox parent is the container for the flex items. In this case, our flex items are the sidebar and the content.
+        </div>
+
+        <p>Once you've identified the flexbox parent, add CSS to make it a flex container. This sets up your two-column layout.</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-b1">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-b1">
-          <h4>CSS Solution:</h4>
-          <pre><code>* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-}
-
-.layout {
-  display: flex;
-  gap: 1.5rem;
-  padding: 1rem;
-}</code></pre>
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>The flexbox parent:</strong> It's the <code>.container</code> class (on your <code>&lt;main&gt;</code> element). This element directly contains both the sidebar and content area.</li>
+            <li><strong>Making it a flex container:</strong> Add <code>display: flex;</code> to the <code>.container</code> selector.</li>
+            <li><strong>Add spacing:</strong> Use the <code>gap</code> property to create space between the sidebar and content (try <code>gap: 1.5rem;</code>).</li>
+            <li><strong>Add padding:</strong> Give the container some breathing room with <code>padding: 1rem;</code>.</li>
+            <li><strong>Bonus - Base styles:</strong> Consider adding some global resets like <code>* { box-sizing: border-box; }</code> and setting <code>margin: 0;</code> on the body.</li>
+          </ul>
         </div>
       </div>
 
       <div class="step-card">
         <h3>B2) Sidebar vs. content sizing</h3>
-        <p>Give the left column a fixed 300px width; let the right column flex to fill remaining space.</p>
+        <p>Give the sidebar a fixed 300px width that won't grow or shrink. Let the content area flex to fill the remaining space.</p>
 
-        <div class="tip-box">
-          <strong>💡 Hint:</strong> For a fixed column, use <code>flex: 0 0 300px;</code>. For the flexible column, <code>flex: 1 1 auto;</code> works well.
-        </div>
+        <p><strong>For the sidebar (.sidebar):</strong></p>
+        <ul>
+          <li>Set <code>width: 300px;</code></li>
+          <li>Set <code>flex-grow: 0;</code> (don't grow)</li>
+          <li>Set <code>flex-shrink: 0;</code> (don't shrink)</li>
+          <li>Set <code>flex-basis: 300px;</code> (start at 300px)</li>
+          <li>Add some styling: <code>padding</code>, <code>background</code>, and <code>border-radius</code></li>
+        </ul>
 
-        <button class="btn-toggle-solution" data-solution="solution-b2">💡 Show Solution</button>
+        <p><strong>For the content (.content):</strong></p>
+        <ul>
+          <li>Set <code>flex-grow: 1;</code> (grow to fill space)</li>
+          <li>Set <code>flex-shrink: 1;</code> (can shrink if needed)</li>
+          <li>Set <code>flex-basis: auto;</code> (start with content size)</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-b2">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-b2">
-          <h4>CSS Solution:</h4>
-          <pre><code>.sidebar {
-  width: 300px;
-  flex: 0 0 300px;
-  padding: 1rem;
-  background: #f5f5f5;
-  border-radius: 8px;
-}
-
-.content {
-  flex: 1 1 auto;
-  max-width: 800px;
-}</code></pre>
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Sidebar styling:</strong> Add <code>padding: 1rem;</code>, a light background color like <code>#f5f5f5</code>, and <code>border-radius: 8px;</code> for rounded corners.</li>
+            <li><strong>Content width:</strong> Consider adding <code>max-width: 800px;</code> to the content area to prevent lines of text from becoming too long.</li>
+            <li><strong>Stretch goal - Shorthand:</strong> The <code>flex</code> shorthand combines all three properties: <code>flex: [grow] [shrink] [basis];</code>. So instead of writing three separate properties, you could write <code>flex: 0 0 300px;</code> for the sidebar and <code>flex: 1 1 auto;</code> for the content.</li>
+          </ul>
         </div>
 
         <div class="resource-links">
@@ -227,6 +291,35 @@ body {
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox" target="_blank">MDN: Flexbox basics</a></li>
             <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex" target="_blank">MDN: flex shorthand</a></li>
           </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>B3) Understanding what you just did</h3>
+        <p>Let's break down what you accomplished with those flex properties:</p>
+
+        <div class="tip-box">
+          <strong>🎯 The sidebar stays fixed:</strong>
+          <ul>
+            <li><code>flex-grow: 0;</code> — The sidebar won't expand when there's extra space</li>
+            <li><code>flex-shrink: 0;</code> — The sidebar won't shrink when space gets tight</li>
+            <li><code>flex-basis: 300px;</code> — The sidebar starts at 300px and stays there</li>
+            <li><strong>Result:</strong> Your sidebar remains exactly 300px wide, no matter the screen size</li>
+          </ul>
+        </div>
+
+        <div class="tip-box" style="margin-top: 1rem;">
+          <strong>🎯 The content area is flexible:</strong>
+          <ul>
+            <li><code>flex-grow: 1;</code> — The content expands to fill all available space</li>
+            <li><code>flex-shrink: 1;</code> — The content can shrink if the viewport gets smaller</li>
+            <li><code>flex-basis: auto;</code> — The content starts with its natural size, then adjusts</li>
+            <li><strong>Result:</strong> Your content area fills the remaining space after the sidebar takes its 300px</li>
+          </ul>
+        </div>
+
+        <div class="warning-box" style="margin-top: 1rem;">
+          <strong>💡 Why this works:</strong> In a flex container, items compete for space. By setting the sidebar to not grow or shrink (<code>0, 0</code>), it claims its 300px and refuses to budge. The content area, with <code>grow: 1</code>, says "I'll take whatever's left!" This is how you create fixed-width sidebars with flexible content areas—a common pattern in web design.
         </div>
       </div>
 
@@ -265,29 +358,36 @@ body {
 
       <div class="step-card">
         <h3>C1) Make the sidebar sticky</h3>
-        <p>Update <code>.sidebar</code> to stay pinned while scrolling. This is pure CSS—no JavaScript needed!</p>
+        <p>Now let's make the sidebar stay pinned while you scroll the page. This is pure CSS—no JavaScript needed!</p>
+
+        <p><strong>📚 First, do some research:</strong></p>
+        <ol>
+          <li>Read the MDN docs on <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky" target="_blank"><code>position: sticky</code></a></li>
+          <li>Pay attention to:
+            <ul>
+              <li>What value you need for the <code>position</code> property</li>
+              <li>What the <code>top</code> property does with sticky positioning</li>
+              <li>How to handle overflow with <code>max-height</code> and <code>overflow</code></li>
+            </ul>
+          </li>
+        </ol>
+
+        <p><strong>Your task:</strong> Add CSS to <code>.sidebar</code> to make it stick to the top of the viewport when scrolling.</p>
 
         <div class="warning-box">
-          <strong>⚠️ Common gotcha:</strong> Sticky works when the element's ancestor allows it (no <code>overflow: hidden</code> on parents). Keep <code>.layout</code> simple!
+          <strong>⚠️ Common gotcha:</strong> Sticky positioning only works when the element's ancestor allows it (no <code>overflow: hidden</code> on parent elements). Keep <code>.container</code> simple!
         </div>
 
-        <button class="btn-toggle-solution" data-solution="solution-c1">💡 Show Solution</button>
+        <button class="btn-toggle-solution" data-solution="solution-c1">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-c1">
-          <h4>CSS Solution:</h4>
-          <pre><code>.sidebar {
-  width: 300px;
-  flex: 0 0 300px;
-  padding: 1rem;
-  background: #f5f5f5;
-  border-radius: 8px;
-
-  /* Sticky positioning */
-  position: sticky;
-  top: 1rem;
-  max-height: calc(100vh - 2rem);
-  overflow: auto;
-}</code></pre>
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Make it sticky:</strong> Add <code>position: sticky;</code> to your <code>.sidebar</code> selector.</li>
+            <li><strong>Set the offset:</strong> Use <code>top: 1rem;</code> to keep it 1rem from the top of the viewport when scrolling.</li>
+            <li><strong>Control the height:</strong> Add <code>max-height: calc(100vh - 2rem);</code> so the sidebar doesn't exceed the viewport height (100vh minus the top offset).</li>
+            <li><strong>Handle overflow:</strong> If your nav gets too long, add <code>overflow: auto;</code> to allow scrolling within the sidebar itself.</li>
+          </ul>
         </div>
 
         <div class="resource-links">
@@ -331,33 +431,51 @@ body {
       </div>
 
       <div class="step-card">
-        <h3>D1) Anchor links</h3>
-        <p>You already set <code>href="#section-x"</code> in the HTML. Make sure your sections have matching <code>id</code> attributes.</p>
+        <h3>D1) Test your anchor links</h3>
+        <p><strong>Verify your HTML setup:</strong></p>
+        <ol>
+          <li>Check that each navigation link has an <code>href</code> pointing to a section id (e.g., <code>href="#section-1"</code>)</li>
+          <li>Confirm each section has a matching <code>id</code> attribute (e.g., <code>id="section-1"</code>)</li>
+          <li>Click each navigation link to test—does it jump to the correct section?</li>
+        </ol>
+
+        <div class="tip-box">
+          <strong>💡 How anchor links work:</strong> When you click a link with <code>href="#section-1"</code>, the browser looks for an element with <code>id="section-1"</code> and scrolls to it. The <code>#</code> symbol tells the browser to look for an id on the current page rather than navigating to a new page.
+        </div>
       </div>
 
       <div class="step-card">
         <h3>D2) Smooth scroll + heading alignment</h3>
-        <p>Add smooth scrolling and scroll margin to prevent headings from being glued to the top edge.</p>
+        <p>Right now, clicking anchor links causes an instant jump. Let's add smooth scrolling and prevent headings from being cut off at the top.</p>
 
-        <button class="btn-toggle-solution" data-solution="solution-d2">💡 Show Solution</button>
+        <p><strong>📚 Research these CSS properties:</strong></p>
+        <ol>
+          <li><strong>Smooth scrolling:</strong> Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior" target="_blank"><code>scroll-behavior</code></a> on MDN
+            <ul>
+              <li>What element does this property go on? (<code>html</code> or your sections?)</li>
+              <li>What value creates smooth scrolling?</li>
+            </ul>
+          </li>
+          <li><strong>Scroll margin:</strong> Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-margin-top" target="_blank"><code>scroll-margin-top</code></a> on MDN
+            <ul>
+              <li>Why would you need space at the top when jumping to a section?</li>
+              <li>What's a good value to prevent headings from being glued to the edge?</li>
+            </ul>
+          </li>
+        </ol>
+
+        <p><strong>Your task:</strong> Add CSS for smooth scrolling and proper spacing when jumping to sections. Also, add some visual styling to your sections (padding, background, borders, etc.).</p>
+
+        <button class="btn-toggle-solution" data-solution="solution-d2">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-d2">
-          <h4>CSS Solution:</h4>
-          <pre><code>html {
-  scroll-behavior: smooth;
-}
-
-.panel {
-  padding: 2rem;
-  margin-bottom: 2rem;
-  background: white;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-
-  /* Room when scrolled-to by anchors */
-  scroll-margin-top: 1rem;
-  position: relative; /* needed for decor in Part E */
-}</code></pre>
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Smooth scrolling:</strong> Add <code>scroll-behavior: smooth;</code> to the <code>html</code> selector for smooth anchor navigation.</li>
+            <li><strong>Style your sections:</strong> Target your <code>section</code> elements directly with <code>padding: 2rem;</code>, <code>margin-bottom: 2rem;</code>, <code>background: white;</code>, <code>border: 1px solid #e0e0e0;</code>, and <code>border-radius: 8px;</code>.</li>
+            <li><strong>Prevent header cutoff:</strong> Add <code>scroll-margin-top: 1rem;</code> to your sections so headings aren't glued to the top edge when jumping to anchors.</li>
+            <li><strong>Prepare for Part E:</strong> Add <code>position: relative;</code> to your sections—this will be needed for positioning decorative icons later.</li>
+          </ul>
         </div>
 
         <div class="resource-links">
@@ -389,10 +507,10 @@ body {
       </div>
     </section>
 
-    <!-- PART E: Decorative Elements -->
+    <!-- PART E: Decorative Icons -->
     <section class="tutorial-section" id="part-e">
       <div class="section-header">
-        <h2>Part E — Decorative Elements (Per Section)</h2>
+        <h2>Part E — Decorative Icons (Per Section)</h2>
         <div class="section-progress">
           <label class="checkbox-label">
             <input type="checkbox" class="section-checkbox" data-step="e" />
@@ -402,65 +520,150 @@ body {
       </div>
 
       <div class="step-card">
-        <h3>E1) Add a simple, non-blocking visual</h3>
-        <p>Style the <code>.deco</code> element so it doesn't block text or clicks. The key property is <code>pointer-events: none</code>.</p>
+        <h3>E1) Download icons from The Noun Project</h3>
+        <p>Let's add visual interest to each section with thematic icons related to flexbox and web design.</p>
 
-        <button class="btn-toggle-solution" data-solution="solution-e1">💡 Show Solution</button>
+        <p><strong>📥 Download icons:</strong></p>
+        <ol>
+          <li>Go to <a href="https://thenounproject.com/" target="_blank">The Noun Project</a></li>
+          <li>Search for flexbox-related terms like:
+            <ul>
+              <li>"layout" or "grid"</li>
+              <li>"container" or "box"</li>
+              <li>"align" or "arrange"</li>
+              <li>"responsive" or "adapt"</li>
+              <li>"web design" or "code"</li>
+            </ul>
+          </li>
+          <li>Download <strong>5 icons</strong> (one for each section) as <strong>PNG or SVG files</strong></li>
+          <li>Choose icons that complement your content themes</li>
+          <li><strong>Note:</strong> Free icons are available! Look for the "Free" filter or create a free account</li>
+        </ol>
 
-        <div class="solution-box hidden" id="solution-e1">
-          <h4>CSS Solution:</h4>
-          <pre><code>.deco {
-  position: absolute;
-  top: -10%;
-  left: -5%;
-  width: 240px;
-  height: 240px;
-
-  pointer-events: none;   /* important! */
-  opacity: 0.25;
-
-  /* Soft gradient circle */
-  border-radius: 50%;
-  background: radial-gradient(
-    circle at 30% 30%,
-    #7dd3fc,
-    transparent 60%
-  );
-  filter: blur(16px);
-}</code></pre>
+        <div class="tip-box">
+          <strong>💡 Icon tips:</strong>
+          <ul>
+            <li>Download in a consistent style (all line art, all filled, etc.)</li>
+            <li>Choose a reasonable size (128px or 256px works well)</li>
+            <li>SVG files are preferred—they scale perfectly and have smaller file sizes</li>
+            <li>Save them with descriptive names like <code>icon-flexbox.svg</code>, <code>icon-container.svg</code>, etc.</li>
+          </ul>
         </div>
       </div>
 
       <div class="step-card">
-        <h3>E2) Variation per section</h3>
-        <p>Nudge the position/size per panel using <code>:nth-of-type()</code> to create variety.</p>
+        <h3>E2) Add icons to your HTML</h3>
+        <p>Now let's add the icons to each section's deco div.</p>
 
-        <button class="btn-toggle-solution" data-solution="solution-e2">💡 Show Solution</button>
+        <p><strong>For CodePen users (using Snipboard):</strong></p>
+        <ol>
+          <li>Go to <a href="https://snipboard.io/" target="_blank">Snipboard.io</a></li>
+          <li>Click "Upload Files" and select your 5 icons</li>
+          <li>Once uploaded, click each image and copy its direct URL</li>
+          <li>In your HTML, update each deco div to include an <code>&lt;img&gt;</code> tag:
+            <pre><code>&lt;div class="deco" id="deco-1"&gt;
+  &lt;img src="SNIPBOARD_URL_HERE" alt=""&gt;
+&lt;/div&gt;</code></pre>
+          </li>
+          <li>Repeat for all 5 sections with their respective icon URLs</li>
+        </ol>
+
+        <div class="warning-box">
+          <strong>⚠️ Important for Final Project:</strong> When you create your final project submission (not in CodePen), you'll need to:
+          <ul>
+            <li>Create an <code>images</code> folder in your project directory</li>
+            <li>Save all your icon files in that folder</li>
+            <li>Update your image paths to <code>images/icon-name.svg</code></li>
+            <li>This ensures your images work when you submit your files or host your site</li>
+          </ul>
+        </div>
+
+        <p><strong>For local files (working outside CodePen):</strong></p>
+        <ol>
+          <li>Create an <code>images</code> folder in your project directory</li>
+          <li>Move your downloaded icons into that folder</li>
+          <li>Reference them in your HTML:
+            <pre><code>&lt;div class="deco" id="deco-1"&gt;
+  &lt;img src="images/icon-flexbox.svg" alt=""&gt;
+&lt;/div&gt;</code></pre>
+          </li>
+        </ol>
+
+        <div class="tip-box">
+          <strong>📝 Accessibility Note:</strong> We use <code>alt=""</code> (empty alt text) because these icons are purely decorative and don't convey essential information. Screen readers will skip them.
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E3) Style the decorative icons</h3>
+        <p>Style the icons so they add visual interest without interfering with content.</p>
+
+        <p><strong>📚 Research CSS positioning:</strong></p>
+        <ul>
+          <li>Read about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank"><code>position: absolute</code></a> and how it removes elements from normal document flow</li>
+          <li>Learn about <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events" target="_blank"><code>pointer-events: none</code></a> to prevent icons from blocking clicks</li>
+        </ul>
+
+        <p><strong>Your task:</strong> Style the <code>.deco</code> class and the <code>img</code> inside it:</p>
+        <ul>
+          <li>Position decorations absolutely so they don't affect layout</li>
+          <li>Make them semi-transparent with <code>opacity</code></li>
+          <li>Prevent them from blocking clicks with <code>pointer-events: none</code></li>
+          <li>Size the images appropriately (try 150-200px)</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-e1">💡 Show Hints</button>
+
+        <div class="solution-box hidden" id="solution-e1">
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Position the deco container:</strong> Add <code>position: absolute;</code> to <code>.deco</code> so it doesn't affect layout flow</li>
+            <li><strong>Make it non-blocking:</strong> Add <code>pointer-events: none;</code> so users can still click links beneath the icons</li>
+            <li><strong>Style the images:</strong> Target <code>.deco img</code> and set:
+              <ul>
+                <li><code>width: 150px;</code> (or your preferred size)</li>
+                <li><code>height: auto;</code> to maintain aspect ratio</li>
+                <li><code>opacity: 0.15;</code> to make them subtle</li>
+                <li><code>filter: grayscale(100%);</code> (optional) for a uniform look</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <h3>E4) Position each icon uniquely</h3>
+        <p>Style each decoration differently using their unique ids. Place icons in different positions to create visual variety.</p>
+
+        <p><strong>Your task:</strong> Use id selectors to position each icon differently:</p>
+        <ul>
+          <li><code>#deco-1</code> — Try <code>top: -10%; left: -5%;</code></li>
+          <li><code>#deco-2</code> — Try <code>top: 50%; right: -5%;</code></li>
+          <li><code>#deco-3</code> — Try <code>bottom: -10%; left: 50%;</code></li>
+          <li>Continue for remaining sections with your own creative positions!</li>
+        </ul>
+
+        <button class="btn-toggle-solution" data-solution="solution-e2">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-e2">
-          <h4>CSS Solution:</h4>
-          <pre><code>.panel:nth-of-type(2) .deco {
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Target by id:</strong> Use <code>#deco-1</code>, <code>#deco-2</code>, etc. to style each decoration uniquely</li>
+            <li><strong>Position variations:</strong> Mix up <code>top</code>, <code>bottom</code>, <code>left</code>, and <code>right</code> values. Use percentages for fluid positioning</li>
+            <li><strong>Example:</strong>
+              <pre><code>#deco-2 {
   top: 50%;
   right: -5%;
-  left: auto;
-  background: radial-gradient(
-    circle at 70% 70%,
-    #fbbf24,
-    transparent 60%
-  );
 }
 
-.panel:nth-of-type(3) .deco {
+#deco-3 {
   bottom: -10%;
-  top: auto;
-  background: radial-gradient(
-    circle at 50% 50%,
-    #a78bfa,
-    transparent 60%
-  );
-}
-
-/* Continue for remaining sections... */</code></pre>
+  left: 50%;
+  transform: translateX(-50%);
+}</code></pre>
+            </li>
+            <li><strong>Experiment!</strong> Try rotating icons with <code>transform: rotate(15deg);</code> or adjusting their size individually</li>
+          </ul>
         </div>
 
         <div class="resource-links">
@@ -475,9 +678,12 @@ body {
       <div class="checkpoint">
         <h4>✅ Checkpoint E</h4>
         <ul class="checklist">
-          <li><input type="checkbox" /> Each section shows a distinct decorative element</li>
-          <li><input type="checkbox" /> Text remains readable (good contrast!)</li>
-          <li><input type="checkbox" /> Links are clickable (thanks to <code>pointer-events: none</code>)</li>
+          <li><input type="checkbox" /> Downloaded 5 icons from The Noun Project (or similar icon source)</li>
+          <li><input type="checkbox" /> Added <code>&lt;img&gt;</code> tags inside each <code>.deco</code> div</li>
+          <li><input type="checkbox" /> Icons are positioned absolutely and don't block content</li>
+          <li><input type="checkbox" /> Icons are semi-transparent and subtle</li>
+          <li><input type="checkbox" /> Each icon has a unique position using id selectors</li>
+          <li><input type="checkbox" /> Text remains readable and links are clickable</li>
         </ul>
       </div>
 
@@ -507,39 +713,23 @@ body {
 
       <div class="step-card">
         <h3>Optional Enhancements</h3>
-        <p>Polish your project with these accessibility and usability improvements:</p>
+        <p>Polish your project with these accessibility and usability improvements. <strong>Note:</strong> While optional, completing Part F demonstrates attention to accessibility and can earn you extra consideration in grading.</p>
         <ul>
           <li>Add a focus style for sidebar links (<code>:focus-visible</code>)</li>
           <li>Style the active link based on scroll (stretch goal with IntersectionObserver)</li>
           <li>Add a "Back to top" link at the end of each section</li>
         </ul>
 
-        <button class="btn-toggle-solution" data-solution="solution-f1">💡 Show Solution</button>
+        <button class="btn-toggle-solution" data-solution="solution-f1">💡 Show Hints</button>
 
         <div class="solution-box hidden" id="solution-f1">
-          <h4>CSS Solution:</h4>
-          <pre><code>/* Focus styles for accessibility */
-.nav-list a:focus-visible {
-  outline: 2px solid #3b82f6;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* Back to top link */
-.back-to-top {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 0.5rem 1rem;
-  background: #f3f4f6;
-  border-radius: 4px;
-  text-decoration: none;
-  color: #374151;
-  font-weight: 500;
-}
-
-.back-to-top:hover {
-  background: #e5e7eb;
-}</code></pre>
+          <h4>Hints:</h4>
+          <ul>
+            <li><strong>Focus styles:</strong> Target your nav links with <code>:focus-visible</code> pseudo-class. Add a visible <code>outline</code> (try <code>2px solid #3b82f6</code>), <code>outline-offset: 2px;</code>, and <code>border-radius: 4px;</code> for polish.</li>
+            <li><strong>Back to top link (HTML):</strong> Add <code>&lt;a href="#" class="back-to-top"&gt;↑ Back to top&lt;/a&gt;</code> at the end of each section.</li>
+            <li><strong>Back to top link (CSS):</strong> Style <code>.back-to-top</code> with <code>display: inline-block;</code>, <code>margin-top: 2rem;</code>, <code>padding: 0.5rem 1rem;</code>, a background color, <code>border-radius: 4px;</code>, and remove underline with <code>text-decoration: none;</code>. Add a <code>:hover</code> state with a darker background.</li>
+            <li><strong>Stretch goal - Active link:</strong> Use JavaScript's IntersectionObserver API to detect which section is currently visible and add an "active" class to the corresponding nav link.</li>
+          </ul>
         </div>
       </div>
 
@@ -563,20 +753,76 @@ body {
       </div>
     </section>
 
-    <!-- Submission Guide -->
-    <section class="tutorial-section" id="submission">
-      <h2>📤 Submission (Canvas)</h2>
+    <!-- PART G: Save Your Reflections -->
+    <section class="tutorial-section" id="part-g">
+      <div class="section-header">
+        <h2>Part G — Save Your Reflections</h2>
+        <div class="section-progress">
+          <label class="checkbox-label">
+            <input type="checkbox" class="section-checkbox" data-step="g" />
+            <span>Mark as complete</span>
+          </label>
+        </div>
+      </div>
 
       <div class="step-card">
-        <h3>What to turn in</h3>
+        <h3>G1) Copy reflections to your HTML</h3>
+        <p>Save your reflections directly in your CodePen HTML file so they're preserved with your work.</p>
+
+        <p><strong>📋 Steps:</strong></p>
         <ol>
-          <li>Link to your CodePen (or GitHub Pages, Netlify, etc.)</li>
-          <li>A short reflection (6–10 sentences total) combining your answers from Parts A–F</li>
-          <li>Optional: Download and submit your HTML and CSS files</li>
+          <li>Click the "Copy All Reflections" button below</li>
+          <li>Go to your CodePen HTML editor</li>
+          <li>Scroll to the very bottom of your HTML (after the closing <code>&lt;/footer&gt;</code> tag)</li>
+          <li>Paste your reflections</li>
+          <li>Your reflections are now saved as an HTML comment in your code!</li>
         </ol>
 
-        <div class="reflection-export">
+        <div class="reflection-export" style="margin: 2rem 0;">
           <button class="btn-primary" id="copyReflections">📋 Copy All Reflections</button>
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Why save reflections in HTML?</strong> By pasting them as an HTML comment at the bottom of your code, they're permanently saved with your project. When you submit your CodePen link, your instructor can view both your code and reflections in one place.
+        </div>
+      </div>
+
+      <div class="checkpoint">
+        <h4>✅ Checkpoint G</h4>
+        <ul class="checklist">
+          <li><input type="checkbox" /> Clicked "Copy All Reflections" button</li>
+          <li><input type="checkbox" /> Pasted reflections at the bottom of HTML in CodePen</li>
+          <li><input type="checkbox" /> Verified reflections are visible in HTML (as a comment)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Submission Guide -->
+    <section class="tutorial-section" id="submission">
+      <h2>📤 Submission</h2>
+
+      <div class="step-card">
+        <h3>What to submit to Canvas</h3>
+        <ol>
+          <li><strong>Your CodePen link</strong> — Make sure your pen is saved and public</li>
+          <li>That's it! Your reflections are already in your HTML at the bottom</li>
+        </ol>
+
+        <div class="warning-box">
+          <strong>⚠️ Before submitting:</strong>
+          <ul>
+            <li>Verify your CodePen is saved (not showing "unsaved changes")</li>
+            <li>Test that your CodePen link opens correctly in a new browser tab</li>
+            <li>Confirm your reflections are pasted at the bottom of your HTML</li>
+          </ul>
+        </div>
+
+        <h3>Add to your homepage</h3>
+        <p>Link to this tutorial from your workspace homepage (<code>index.html</code>):</p>
+        <pre><code>&lt;a href="YOUR_CODEPEN_LINK"&gt;Flexbox Tutorial&lt;/a&gt;</code></pre>
+        <p>This way, your instructor can easily find all your work from your main workspace page.</p>
+
+        <div style="margin: 2rem 0;">
           <button class="btn-secondary" id="clearProgress">🔄 Reset Progress</button>
         </div>
 
@@ -586,15 +832,15 @@ body {
           <li><input type="checkbox" /> Five nav items link to matching ids</li>
           <li><input type="checkbox" /> Right column flexes to fill space (Flexbox only—no grid)</li>
           <li><input type="checkbox" /> Smooth scrolling works; headings aren't jammed at the top</li>
-          <li><input type="checkbox" /> Each section includes a decorative element that doesn't block content</li>
+          <li><input type="checkbox" /> Each section includes a decorative icon that doesn't block content</li>
           <li><input type="checkbox" /> Basic accessibility: reasonable contrast, visible focus on nav links</li>
         </ul>
 
         <h3>Grading Rubric (10 pts)</h3>
         <ul>
           <li><strong>4 pts</strong> — Layout correctness (Flexbox, 300px sidebar, sticky behavior)</li>
-          <li><strong>3 pts</strong> — Anchors & scroll polish (IDs matched, smooth scroll, margin)</li>
-          <li><strong>2 pts</strong> — Decorative elements (positioned safely, varied)</li>
+          <li><strong>3 pts</strong> — Anchors & scroll polish (IDs matched, smooth scroll, scroll-margin)</li>
+          <li><strong>2 pts</strong> — Decorative icons (positioned safely with absolute positioning, varied locations)</li>
           <li><strong>1 pt</strong> — Reflection quality (clear, specific, shows understanding)</li>
         </ul>
       </div>

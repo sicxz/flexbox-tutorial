@@ -1,0 +1,72 @@
+=====================================
+SAMPLE CONTENT FOR FLEXBOX TUTORIAL
+=====================================
+
+Copy and paste the content below into your HTML to test your layout!
+
+-------------------------------------
+NAVIGATION LINK TITLES (5 items)
+-------------------------------------
+
+1. What is Flexbox?
+2. Flex Containers
+3. Flex Items & Alignment
+4. Common Patterns
+5. Best Practices
+
+
+-------------------------------------
+SECTION 1: What is Flexbox?
+-------------------------------------
+
+Flexbox, short for Flexible Box Layout, is a powerful CSS layout module designed to help us create responsive and flexible layouts with ease. Before flexbox, developers relied heavily on floats, positioning, and complex calculations to achieve even simple layouts. Flexbox changed the game by introducing a more intuitive way to distribute space and align content within a container.
+
+The beauty of flexbox lies in its one-dimensional focus. It excels at arranging items in a single direction—either as a row or as a column. This makes it perfect for navigation bars, card layouts, toolbars, and any interface where you need elements to adapt fluidly to different screen sizes. Whether you're building a mobile-first design or ensuring your desktop layout scales gracefully, flexbox provides the flexibility modern web development demands.
+
+
+-------------------------------------
+SECTION 2: Flex Containers
+-------------------------------------
+
+Every flexbox layout starts with a flex container. When you apply display: flex to an element, it becomes a flex container, and its direct children automatically become flex items. This parent-child relationship is fundamental to understanding how flexbox works. The container controls the overall layout direction, spacing, and alignment of its items.
+
+Flex containers come with several powerful properties. The flex-direction property determines whether items flow horizontally (row) or vertically (column). You can also reverse the order with row-reverse or column-reverse. The justify-content property controls spacing along the main axis—whether items should be packed to the start, centered, spaced evenly, or spread out with space between or around them.
+
+Another essential property is align-items, which handles alignment along the cross axis (perpendicular to the main axis). This is where you can vertically center items effortlessly, align them to the top or bottom, or stretch them to fill the container's height. The gap property is a modern addition that adds consistent spacing between flex items without needing margins, making your CSS cleaner and more maintainable.
+
+Flex containers also support wrapping with the flex-wrap property. By default, flex items try to squeeze into a single line, but enabling wrapping allows items to break into multiple rows or columns when space runs out. This is incredibly useful for responsive grids and galleries that adapt to varying viewport sizes.
+
+
+-------------------------------------
+SECTION 3: Flex Items & Alignment
+-------------------------------------
+
+While the container sets the stage, flex items have their own set of properties that give you fine-grained control over individual elements. The most important of these are flex-grow, flex-shrink, and flex-basis, often combined into the flex shorthand property. Understanding these three values is key to mastering flexbox layouts.
+
+The flex-grow property determines how much an item should expand relative to its siblings when extra space is available. A value of 0 means the item won't grow at all, while a value of 1 (or higher) allows it to claim a share of the remaining space. This is perfect for creating flexible columns where one section takes up most of the screen while a sidebar stays fixed.
+
+Conversely, flex-shrink controls how much an item can shrink when space is limited. By default, items can shrink to prevent overflow, but setting flex-shrink: 0 keeps an item at its defined size no matter what. This is useful for elements like logos or buttons that should maintain their dimensions regardless of screen size.
+
+The flex-basis property sets the initial size of a flex item before any growing or shrinking occurs. Think of it as the starting point—similar to width for rows or height for columns, but more flexible. You can use length values like 300px, percentages, or even auto to let the content determine the size.
+
+Flex items also have their own align-self property, which overrides the container's align-items setting for individual elements. This is handy when most items should align one way, but one or two need special positioning. Whether you need an icon centered while text aligns to the top, or a call-to-action button pushed to the bottom, align-self gives you that control.
+
+
+-------------------------------------
+SECTION 4: Common Patterns
+-------------------------------------
+
+Flexbox shines when it comes to solving common layout challenges that used to require hacky workarounds. One of the most popular patterns is the "holy grail" layout—a header at the top, a footer at the bottom, and a main content area with a sidebar. Flexbox makes this trivial with a combination of flex-direction: column for the overall structure and flex-direction: row for the main content area.
+
+Navigation bars are another perfect use case. Whether you want a horizontal menu with evenly spaced items or a vertical sidebar with aligned links, flexbox handles it elegantly. Using justify-content: space-between spreads items across the full width, while align-items: center ensures text and icons line up perfectly. Add flex-wrap: wrap, and your navigation automatically adapts to smaller screens.
+
+Card layouts benefit immensely from flexbox's flexibility. Imagine a row of product cards where each card has an image, title, description, and button. With flexbox, you can ensure all cards have the same height, all buttons align to the bottom, and content adjusts gracefully when users resize their browsers. The flex-grow and flex-shrink properties ensure cards expand or contract proportionally, maintaining a balanced, professional appearance.
+
+
+-------------------------------------
+SECTION 5: Best Practices
+-------------------------------------
+
+As you build with flexbox, keep a few best practices in mind. First, avoid applying too many flex properties unnecessarily. Start simple—set display: flex on the container and see how far that gets you before adding complexity. Many layouts work beautifully with just a few key properties like gap, justify-content, and align-items.
+
+Second, remember that flexbox is one-dimensional. If you find yourself fighting to control both rows and columns simultaneously, you might need CSS Grid instead. Flexbox and Grid complement each other—flexbox for linear layouts, Grid for two-dimensional structures. Don't be afraid to combine them within the same project. Modern web development is about choosing the right tool for each job, and knowing when to reach for flexbox versus Grid is a valuable skill that will make your layouts more maintainable and performant.

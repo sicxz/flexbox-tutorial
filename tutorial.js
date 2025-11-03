@@ -218,20 +218,28 @@ const Reflections = {
       b: 'Part B: Flexbox Layout',
       c: 'Part C: Sticky Sidebar',
       d: 'Part D: Anchor Links',
-      e: 'Part E: Decorative Elements',
+      e: 'Part E: Decorative Icons',
       f: 'Part F: Finishing Touches',
     };
 
-    let text = '# Flexbox Tutorial Reflections\n\n';
+    let text = '<!--\n';
+    text += '═══════════════════════════════════════════════\n';
+    text += '  FLEXBOX TUTORIAL REFLECTIONS\n';
+    text += '═══════════════════════════════════════════════\n\n';
 
     steps.forEach(step => {
       const reflection = TutorialState.reflections[step];
       if (reflection) {
-        text += `## ${labels[step]}\n${reflection}\n\n`;
+        text += `${labels[step]}\n`;
+        text += '─────────────────────────────────────────────\n';
+        text += `${reflection}\n\n`;
       }
     });
 
-    if (text === '# Flexbox Tutorial Reflections\n\n') {
+    text += '═══════════════════════════════════════════════\n';
+    text += '-->';
+
+    if (text === '<!--\n═══════════════════════════════════════════════\n  FLEXBOX TUTORIAL REFLECTIONS\n═══════════════════════════════════════════════\n\n═══════════════════════════════════════════════\n-->') {
       alert('No reflections to copy yet. Write some reflections first!');
       return;
     }
@@ -240,7 +248,7 @@ const Reflections = {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        alert('All reflections copied to clipboard! Paste them into your Canvas submission.');
+        alert('All reflections copied as HTML comment! Paste at the bottom of your HTML file.');
       })
       .catch(err => {
         console.error('Failed to copy:', err);

@@ -407,16 +407,23 @@ pre code {
 
 .checklist li {
   padding: 0.5rem 0;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
   color: var(--text-secondary);
+  line-height: 1.8;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: start;
 }
 
 .checklist input[type="checkbox"] {
-  margin-top: 0.25rem;
+  margin-top: 0.3rem;
   cursor: pointer;
   flex-shrink: 0;
+}
+
+.checklist li code {
+  white-space: nowrap;
+  display: inline-block;
 }
 
 /* ===== Reflection Cards ===== */

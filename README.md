@@ -13,7 +13,7 @@ An interactive, step-by-step tutorial for learning CSS Flexbox through building 
 
 ### 💻 Live Code Workspace
 
-- **In-browser code editor**: Write HTML and CSS directly in the tutorial
+- **In-browser code editor**: Write HTML and CSS directly in the tutorial using codepen  REMEMBER TO SIGN INTO YOUR CODEPEN ACCOUNT FIRST!!! 
 - **Live preview**: See your changes rendered in real-time
 - **Auto-save**: Your code is automatically saved to localStorage
 - **Download functionality**: Export your HTML and CSS files when done
@@ -25,7 +25,7 @@ An interactive, step-by-step tutorial for learning CSS Flexbox through building 
 - **Instant feedback**: Get confirmation when you complete milestones
 - **Visual celebration**: Success animations for completed steps
 
-### 💡 Solution Toggles
+### 💡Hints Toggles
 
 - **Show/Hide solutions**: Reveal code solutions when you need help
 - **Hints and tips**: Helpful boxes with common gotchas and best practices
@@ -49,20 +49,18 @@ An interactive, step-by-step tutorial for learning CSS Flexbox through building 
 
 ## 🚀 Getting Started
 
-### Option 1: Open Locally
+### For Students:
+
+1. Visit the tutorial at: **[Your instructor will provide the URL]**
+2. The tutorial loads with an embedded CodePen workspace on the right
+3. Follow along step-by-step through Parts A-F
+4. Your progress is automatically saved in your browser
+
+### For Instructors (Local Setup):
 
 1. Clone or download this repository
 2. Open `index.html` in your web browser
-3. Start learning!
-
-### Option 2: Host Online
-
-Deploy to any static hosting service:
-
-- **GitHub Pages**: Push to a repo and enable GitHub Pages
-- **Netlify**: Drag and drop the folder to Netlify
-- **CodePen**: Copy HTML, CSS, and JS into separate panes
-- **Vercel**: Deploy with a single command
+3. Or deploy to GitHub Pages for easy student access 
 
 ## 📚 Tutorial Structure
 
@@ -90,11 +88,12 @@ Polish the user experience:
 - Scroll margin for proper alignment
 - Navigation functionality
 
-### Part E: Decorative Elements
+### Part E: Decorative Icons
 Add visual interest:
-- Absolute positioning
-- Non-blocking decorations with `pointer-events`
-- Gradient effects
+- Downloading icons from The Noun Project
+- Uploading to Snipboard.io for CodePen use
+- Absolute positioning with `pointer-events: none`
+- Unique icon positioning per section
 
 ### Part F: Finishing Touches
 Complete with accessibility:
@@ -137,7 +136,7 @@ You can customize the tutorial by editing:
 - `tutorial-styles.css` - Change colors, spacing, and visual design
 - `tutorial.js` - Adjust validation logic and interactive features
 
-### Color Scheme
+### Color Scheme 
 
 CSS custom properties in `tutorial-styles.css` make it easy to rebrand:
 
@@ -162,10 +161,10 @@ Students should complete:
 
 ### Grading Rubric (10 pts)
 
-- **4 pts** — Layout correctness (Flexbox, 300px sidebar, sticky)
-- **3 pts** — Anchors & scroll polish (IDs, smooth scroll, margins)
-- **2 pts** — Decorative elements (positioned safely, varied)
-- **1 pt** — Reflection quality (clear, specific, understanding shown)
+- **4 pts** — Layout correctness (Flexbox, 300px sidebar, sticky behavior)
+- **3 pts** — Anchors & scroll polish (IDs matched, smooth scroll, scroll-margin)
+- **2 pts** — Decorative icons (positioned safely with absolute positioning, varied locations)
+- **1 pt** — Reflection quality (clear, specific, shows understanding)
 
 ## 🛠️ Technical Details
 
