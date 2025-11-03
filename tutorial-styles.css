@@ -109,71 +109,66 @@ pre code {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* ===== Main Content Container (Single Column) ===== */
-.tutorial-content {
-  max-width: 900px;
+/* ===== Two-Column Split View Container ===== */
+.tutorial-container {
+  display: flex;
+  gap: 0;
+  max-width: 1800px;
   margin: 0 auto;
+  min-height: calc(100vh - 140px);
+}
+
+/* ===== Left Column: Tutorial Steps (Scrollable) ===== */
+.tutorial-steps {
+  flex: 0 0 45%;
+  max-width: 45%;
   padding: 2rem 1.5rem;
+  overflow-y: auto;
+  height: calc(100vh - 140px);
+  border-right: 1px solid var(--border-color);
+  background: var(--bg-secondary);
 }
 
-/* ===== CodePen Section ===== */
-.codepen-section {
+/* ===== Right Column: CodePen Workspace (Sticky) ===== */
+.codepen-workspace {
+  flex: 1;
+  position: relative;
   background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-sm);
-  border: 2px solid var(--primary-color);
 }
 
-.codepen-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
+.codepen-sticky {
+  position: sticky;
+  top: 140px;
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+}
+
+.codepen-sticky h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
   color: var(--text-primary);
 }
 
-.codepen-section > p {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-}
-
-.codepen-cta {
-  text-align: center;
-  margin-bottom: 1.5rem;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-  border-radius: 8px;
-}
-
-.btn-codepen {
-  display: inline-block;
-  padding: 0.875rem 2rem;
-  background: var(--primary-color);
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1.125rem;
-  transition: all 0.2s;
-  box-shadow: var(--shadow-md);
-}
-
-.btn-codepen:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.2);
-}
-
 .codepen-hint {
-  margin-top: 1rem;
   font-size: 0.875rem;
   color: var(--text-secondary);
+  margin-bottom: 1rem;
 }
 
 .codepen-embed {
+  flex: 1;
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--border-color);
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  min-height: 0;
+}
+
+.codepen-embed iframe {
+  display: block;
+  height: 100%;
 }
 
 /* ===== Tutorial Introduction ===== */
@@ -552,6 +547,33 @@ pre code {
 }
 
 /* ===== Responsive Design ===== */
+@media (max-width: 1024px) {
+  /* Stack columns vertically on tablets and below */
+  .tutorial-container {
+    flex-direction: column;
+  }
+
+  .tutorial-steps {
+    flex: none;
+    max-width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 1rem;
+  }
+
+  .codepen-workspace {
+    flex: none;
+  }
+
+  .codepen-sticky {
+    position: relative;
+    top: 0;
+    height: 600px;
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .tutorial-header {
     padding: 1.5rem 1rem;
@@ -561,11 +583,6 @@ pre code {
     font-size: 1.5rem;
   }
 
-  .tutorial-content {
-    padding: 1.5rem 1rem;
-  }
-
-  .codepen-section,
   .tutorial-intro,
   .step-card {
     padding: 1.5rem;
@@ -590,17 +607,16 @@ pre code {
     font-size: 0.75rem;
   }
 
-  .btn-codepen {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
   .reflection-export {
     flex-direction: column;
   }
 
   .reflection-export button {
     width: 100%;
+  }
+
+  .codepen-sticky {
+    height: 500px;
   }
 }
 
@@ -613,11 +629,10 @@ pre code {
     font-size: 0.875rem;
   }
 
-  .tutorial-content {
+  .tutorial-steps {
     padding: 1rem;
   }
 
-  .codepen-section,
   .tutorial-intro,
   .step-card {
     padding: 1rem;
@@ -631,6 +646,10 @@ pre code {
 
   .section-header {
     padding: 1rem;
+  }
+
+  .codepen-sticky {
+    height: 400px;
   }
 }
 

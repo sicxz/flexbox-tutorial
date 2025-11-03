@@ -16,39 +16,11 @@
     </div>
   </div>
 
-  <main class="tutorial-content">
-    <!-- CodePen Workspace Section -->
-    <section class="codepen-section">
-      <h2>Your Workspace</h2>
-      <p>Code along in CodePen as you follow the tutorial below. All the starter code is ready for you!</p>
-
-      <div class="codepen-cta">
-        <a href="https://codepen.io/tmasingale/pen/jEWQvbN/04e2176f7fe5628e8b749dac5f0b30d7"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="btn-codepen">
-          Open in CodePen →
-        </a>
-        <p class="codepen-hint">💡 Tip: Keep CodePen open in another window while you follow along</p>
-      </div>
-
-      <div class="codepen-embed">
-        <iframe
-          height="500"
-          style="width: 100%;"
-          scrolling="no"
-          title="Flexbox Tutorial Starter"
-          src="https://codepen.io/tmasingale/embed/jEWQvbN/04e2176f7fe5628e8b749dac5f0b30d7?default-tab=html%2Cresult&editable=true"
-          frameborder="no"
-          loading="lazy"
-          allowtransparency="true"
-          allowfullscreen="true">
-        </iframe>
-      </div>
-    </section>
-
-    <!-- Tutorial Introduction -->
-    <section class="tutorial-intro">
+  <div class="tutorial-container">
+    <!-- Left Column: Tutorial Steps (Scrollable) -->
+    <div class="tutorial-steps">
+      <!-- Tutorial Introduction -->
+      <section class="tutorial-intro">
       <h2>What You'll Build</h2>
       <p><strong>Goal:</strong> Create a two-column page with Flexbox: a 300px sticky sidebar on the left and a scrollable content column on the right. Nav links jump to section IDs.</p>
 
@@ -627,7 +599,33 @@ body {
         </ul>
       </div>
     </section>
-  </main>
+    </div>
+    <!-- End Left Column -->
+
+    <!-- Right Column: CodePen Workspace (Sticky) -->
+    <div class="codepen-workspace">
+      <div class="codepen-sticky">
+        <h2>Your Workspace</h2>
+        <p class="codepen-hint">Code along as you follow the tutorial →</p>
+
+        <div class="codepen-embed">
+          <iframe
+            height="100%"
+            style="width: 100%;"
+            scrolling="no"
+            title="Flexbox Tutorial Starter"
+            src="https://codepen.io/tmasingale/embed/jEWQvbN/04e2176f7fe5628e8b749dac5f0b30d7?default-tab=html%2Cresult&editable=true"
+            frameborder="no"
+            loading="lazy"
+            allowtransparency="true"
+            allowfullscreen="true">
+          </iframe>
+        </div>
+      </div>
+    </div>
+    <!-- End Right Column -->
+  </div>
+  <!-- End Tutorial Container -->
 
   <script src="tutorial.js"></script>
 </body>
