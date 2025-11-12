@@ -1,4 +1,5 @@
 # 🎓 Interactive Flexbox Tutorial
+link tutorial: https://sicxz.github.io/flexbox-tutorial/
 
 An interactive, step-by-step tutorial for learning CSS Flexbox through building a two-column layout with a sticky sidebar and anchor navigation.
 
